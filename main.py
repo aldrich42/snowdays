@@ -81,14 +81,4 @@ def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) 
     return random.random()
 
 
-# types of outcomes that we can expect:
-# snow day
-# virtual day
-# 2 hour delay
-# 1 hour delay
-# early dismissal (rare)
-# normal day
-# special day (weekend, holiday, whatever)
-
-
 print(fmt(chance_of_snow_day(266, 4)))
