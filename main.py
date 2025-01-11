@@ -4,6 +4,16 @@ import random
 import requests
 
 
+URL_PREFIX = "https://api.weather.gov"
+
+
+class Place(object):
+    def __init__(self, office: str, x_pos: int, y_pos: int):
+        self.office: str = office
+        self.x_pos: int = x_pos
+        self.y_pos: int = y_pos
+
+
 def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
     # temp units: K, C, F
 
@@ -34,7 +44,12 @@ def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
     try:
         return conversion_table[(from_unit, to_unit)](value)
     except KeyError:
-        raise ValueError(f"Unknown temperature conversion: {(from_unit,to_unit).__repr__()}")
+        raise ValueError(f"Unknown temperature conversion: {(from_unit, to_unit).__repr__()}")
+
+
+places: dict[str: Place] = {
+    "test_place": Place("BOX", 72, 90)
+}
 
 
 def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
