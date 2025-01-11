@@ -1,4 +1,5 @@
 import datetime
+import math
 import pytz
 import random
 import requests
@@ -47,6 +48,10 @@ def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown temperature conversion: {(from_unit, to_unit).__repr__()}")
 
 
+def fmt(value: float) -> str:
+    return f"{math.floor(value * 100)}%"
+
+
 places: dict[str: Place] = {
     "test_place": Place("BOX", 72, 90)
 }
@@ -70,4 +75,4 @@ def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) 
 # special day (weekend, holiday, whatever)
 
 
-print(f"{chance_of_snow_day(-2.5, 10.0)*100:.0f}%")
+print(fmt(chance_of_snow_day(266, 4)))
