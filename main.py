@@ -48,6 +48,22 @@ def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown temperature conversion: {(from_unit, to_unit).__repr__()}")
 
 
+def convert_height(value: float, from_unit: str, to_unit: str) -> float:
+    # height units: cm, m, in, ft
+
+    conversion_table: dict = {
+        ("cm", "m"): 1/100, ("cm", "in"): 1/2.54, ("cm", "ft"): 1/(2.54*12),
+        ("m", "cm"): 100, ("m", "in"): 100/2.54, ("m", "ft"): 100/(12*2.54),
+        ("in", "cm"): 2.54, ("in", "m"): 2.54/100, ("in", "ft"): 1/12,
+        ("ft", "cm"): 12*2.54, ("ft", "m"): 12*2.54/100, ("ft", "in"): 12
+    }
+
+    try:
+        return value * conversion_table[(from_unit, to_unit)]
+    except KeyError:
+        raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
+
+
 def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
