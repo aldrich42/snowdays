@@ -43,6 +43,9 @@ class Place(object):
     def url_zones(self) -> str:
         return f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&include_geometry=false"
 
+    def url_data(self) -> str:
+        return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}"
+
     def url_forecast(self) -> str:
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast"
 
@@ -54,6 +57,9 @@ class Place(object):
 
     def url_headlines(self) -> str:
         return f"https://api.weather.gov/offices/{self.wfo}/headlines"
+
+    def get_data(self) -> dict:
+        return call(self.url_data())
 
     def get_forecast(self) -> dict:
         return call(self.url_forecast())
@@ -175,6 +181,5 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(test_place.find_zone())
-    print(test_place.zone_name)
+    print(test_place.url_forecast())
     main()
