@@ -60,10 +60,6 @@ class Place(object):
         return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit={unit}&"
                 f"lg=english&FcstType=json")
 
-    def url_graphical(self, unit: str = "0") -> str:  # us
-        return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit={unit}&"
-                f"lg=english&FcstType=graphical")
-
     def get_forecast(self) -> dict:
         return call(self.url_forecast())
 
