@@ -22,7 +22,7 @@ class Place(object):
         self.zone_id: str = zone_id
         if None in {name, wfo, x, y}:
             self.name, self.wfo, self.x, self.y = self.find_place()
-        if None in {zone_name, zone_id} is None:
+        if None in {zone_name, zone_id}:
             self.zone_name, self.zone_id = self.find_zone()
 
     def find_place(self) -> (str, str, str, str):
@@ -173,5 +173,6 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(test_place.zone_id)
+    print(test_place.find_zone())
+    print(test_place.zone_name)
     main()
