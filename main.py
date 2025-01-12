@@ -9,37 +9,21 @@ class BadResponse(Exception):
     pass
 
 
-class Zone(object):
-    def __init__(self, latitude: str, longitude: str, name: str | None = None, zone_id: str | None = None):
-        self.latitude: str = latitude
-        self.longitude: str = longitude
-        self.name: str = name
-        self.zone_id: str = zone_id
-        if None in {name, zone_id}:
-            self.name, self.zone_id = self.find_zone()
-
-    def find_zone(self) -> (str, str):
-        properties = call(self.url_zones())["features"][0]["properties"]
-        return properties["name"], properties["id"]
-
-    def url_zones(self) -> str:
-        return f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&include_geometry=false"
-
-
 class Place(object):
     def __init__(self, latitude: str, longitude: str, name: str | None = None, wfo: str | None = None,
-                 x: str | None = None, y: str | None = None, forecast_zone: Zone = None):
+                 x: str | None = None, y: str | None = None, zone_name: str | None = None, zone_id: str | None = None):
         self.latitude: str = latitude
         self.longitude: str = longitude
         self.name: str = name
         self.wfo: str = wfo
         self.x: str = x
         self.y: str = y
-        self.forecast_zone: Zone = forecast_zone
+        self.zone_name: str = zone_name
+        self.zone_id: str = zone_id
         if None in {name, wfo, x, y}:
             self.name, self.wfo, self.x, self.y = self.find_place()
-        if forecast_zone is None:
-            self.forecast_zone = Zone(latitude, longitude)
+        if None in {zone_name, zone_id} is None:
+            self.zone_name, self.zone_id = self.find_zone()
 
     def find_place(self) -> (str, str, str, str):
         properties = call(self.url_points())["properties"]
@@ -47,8 +31,15 @@ class Place(object):
                 f'{properties["relativeLocation"]["properties"]["state"]}',
                 properties["gridId"], properties["gridX"], properties["gridY"])
 
+    def find_zone(self) -> (str, str):
+        properties = call(self.url_zones())["features"][0]["properties"]
+        return properties["name"], properties["id"]
+
     def url_points(self) -> str:
         return f"https://api.weather.gov/points/{self.latitude},{self.longitude}"
+
+    def url_zones(self) -> str:
+        return f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&include_geometry=false"
 
     def url_forecast(self) -> str:
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast"
@@ -179,6 +170,5 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(test_place.url_mapclick())
-    print(test_place.get_hourly_forecast())
+    print(test_place.forecast_zone.zone_id)
     main()
