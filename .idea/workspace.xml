@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="removed zone class">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added url_headlines method">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -273,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736719798818</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added url_headlines method">
+      <option name="closed" value="true" />
+      <created>1736720918264</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1736720918264</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,6 +317,7 @@
     <MESSAGE value="removed url graphical b/c nobody needs that" />
     <MESSAGE value="fixed and shortened url mapclick" />
     <MESSAGE value="removed zone class" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed zone class" />
+    <MESSAGE value="added url_headlines method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added url_headlines method" />
   </component>
 </project>

@@ -173,5 +173,5 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(test_place.forecast_zone.zone_id)
+    print(test_place.zone_id)
     main()
