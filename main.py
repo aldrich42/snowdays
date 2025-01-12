@@ -5,36 +5,45 @@ import random
 import requests
 
 
-URL_PREFIX = "https://api.weather.gov"
-
-
-class BadResponse(ValueError):
+class BadResponse(Exception):
     pass
 
 
 class Place(object):
-    def __init__(self, name: str, wfo: str, x: int, y: int):
+    def __init__(self, latitude: str, longitude: str, name: str | None = None, wfo: str | None = None,
+                 x: str | None = None, y: str | None = None):
+        self.latitude: str = latitude
+        self.longitude: str = longitude
         self.name: str = name
         self.wfo: str = wfo
-        self.x: int = x
-        self.y: int = y
+        self.x: str = x
+        self.y: str = y
+        if None in {name, wfo, x, y}:
+            self.name, self.wfo, self.x, self.y = find_place(latitude, longitude)
 
     def get_forecast(self):
-        return call(f"{URL_PREFIX}/gridpoints/{self.wfo}/{self.x},{self.y}/forecast")
+        return call(f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast")
 
     def get_hourly_forecast(self):
-        return call(f"{URL_PREFIX}/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly")
+        return call(f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly")
+
+    def get_mapclick(self):
+        return call(f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit=0&"
+                    f"lg=english&FcstType=json")
+
+    def get_observation(self):
+        return self.get_mapclick()["currentobservation"]
 
 
-def find_place(latitude: str, longitude: str) -> Place:
+def find_place(latitude: str, longitude: str) -> (str, str, str, str):
     properties = call(f"https://api.weather.gov/points/{latitude},{longitude}")["properties"]
-    return Place(f'{properties["relativeLocation"]["properties"]["city"]}, '
-                 f'{properties["relativeLocation"]["properties"]["city"]}',
-                 properties["gridId"], properties["gridX"], properties["gridY"])
+    return (f'{properties["relativeLocation"]["properties"]["city"]}, '
+            f'{properties["relativeLocation"]["properties"]["city"]}',
+            properties["gridId"], properties["gridX"], properties["gridY"])
 
 
 def check_ok() -> bool:
-    response = requests.get(URL_PREFIX)
+    response = requests.get("https://api.weather.gov")
     if response.status_code == 200:
         return response.json()["status"] == "OK"
     else:
@@ -127,9 +136,7 @@ def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
 
-places: dict[str: Place] = {
-    "test_place": find_place("42.3555", "-71.0565")
-}
+test_place = Place("42.3555", "-71.0565")  # boston
 
 
 def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
@@ -146,5 +153,5 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(places["test_place"].get_hourly_forecast())
+    print(test_place.get_observation())
     main()
