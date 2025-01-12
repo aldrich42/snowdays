@@ -10,25 +10,27 @@ class BadResponse(Exception):
 
 
 class Place(object):
-    def __init__(self, latitude: str, longitude: str, name: str | None = None, wfo: str | None = None,
-                 x: str | None = None, y: str | None = None, zone_name: str | None = None, zone_id: str | None = None):
+    def __init__(self, latitude: str, longitude: str, municipality: str | None = None, state: str | None = None,
+                 wfo: str | None = None, x: str | None = None, y: str | None = None, zone_name: str | None = None,
+                 zone_id: str | None = None):
         self.latitude: str = latitude
         self.longitude: str = longitude
-        self.name: str = name
+        self.municipality: str = municipality
+        self.state: str = state
         self.wfo: str = wfo
         self.x: str = x
         self.y: str = y
         self.zone_name: str = zone_name
         self.zone_id: str = zone_id
-        if None in {name, wfo, x, y}:
-            self.name, self.wfo, self.x, self.y = self.find_place()
+        if None in {municipality, state, wfo, x, y}:
+            self.municipality, self.state, self.wfo, self.x, self.y = self.find_place()
         if None in {zone_name, zone_id}:
             self.zone_name, self.zone_id = self.find_zone()
 
-    def find_place(self) -> (str, str, str, str):
+    def find_place(self) -> (str, str, str, str, str):
         properties = call(self.url_points())["properties"]
-        return (f'{properties["relativeLocation"]["properties"]["city"]}, '
-                f'{properties["relativeLocation"]["properties"]["state"]}',
+        return (properties["relativeLocation"]["properties"]["city"],
+                properties["relativeLocation"]["properties"]["state"],
                 properties["gridId"], properties["gridX"], properties["gridY"])
 
     def find_zone(self) -> (str, str):
