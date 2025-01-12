@@ -9,17 +9,36 @@ class BadResponse(Exception):
     pass
 
 
+class Zone(object):
+    def __init__(self, latitude: str, longitude: str, name: str | None = None, zone_id: str | None = None):
+        self.latitude: str = latitude
+        self.longitude: str = longitude
+        self.name: str = name
+        self.zone_id: str = zone_id
+        if None in {name, zone_id}:
+            self.name, self.zone_id = find_zone(latitude, longitude)
+
+
+def find_zone(latitude: str, longitude: str) -> (str, str):
+    properties = call(f"https://api.weather.gov/zones?type=land&point={latitude},{longitude}&include_geometry=false")["features"][0]["properties"]
+    return properties["name"], properties["id"]
+
+
 class Place(object):
     def __init__(self, latitude: str, longitude: str, name: str | None = None, wfo: str | None = None,
-                 x: str | None = None, y: str | None = None):
+                 x: str | None = None, y: str | None = None, forecast_zone: Zone = None):
         self.latitude: str = latitude
         self.longitude: str = longitude
         self.name: str = name
         self.wfo: str = wfo
         self.x: str = x
         self.y: str = y
+        self.forecast_zone: Zone = forecast_zone
         if None in {name, wfo, x, y}:
             self.name, self.wfo, self.x, self.y = find_place(latitude, longitude)
+        if forecast_zone is None:
+            self.forecast_zone = Zone(latitude, longitude)
+            # todo url points
 
     def url_forecast(self):
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast"
@@ -30,6 +49,7 @@ class Place(object):
     def url_mapclick(self):
         return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit=0&lg=english&"
                 f"FcstType=json")
+    # todo graphical
 
     def get_forecast(self):
         return call(self.url_forecast())
@@ -47,7 +67,7 @@ class Place(object):
 def find_place(latitude: str, longitude: str) -> (str, str, str, str):
     properties = call(f"https://api.weather.gov/points/{latitude},{longitude}")["properties"]
     return (f'{properties["relativeLocation"]["properties"]["city"]}, '
-            f'{properties["relativeLocation"]["properties"]["city"]}',
+            f'{properties["relativeLocation"]["properties"]["city"]}',  # todo fix, # make a part of place
             properties["gridId"], properties["gridX"], properties["gridY"])
 
 
@@ -162,6 +182,6 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(test_place.url_mapclick())
-    print(test_place.get_observation())
+    print(test_place.url_hourly_forecast())
+    print(test_place.get_hourly_forecast())
     main()

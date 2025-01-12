@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="did some refactoring and added api calls to the mapclick thing">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added url generation for mapclick because it's so much easier to check sources this way">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736714633690</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="added url generation for mapclick because it's so much easier to check sources this way">
+      <option name="closed" value="true" />
+      <created>1736715238416</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736715238416</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,6 +230,7 @@
     <MESSAGE value="added water_vapor_pressure function" />
     <MESSAGE value="added apparent_temperature function" />
     <MESSAGE value="did some refactoring and added api calls to the mapclick thing" />
-    <option name="LAST_COMMIT_MESSAGE" value="did some refactoring and added api calls to the mapclick thing" />
+    <MESSAGE value="added url generation for mapclick because it's so much easier to check sources this way" />
+    <option name="LAST_COMMIT_MESSAGE" value="added url generation for mapclick because it's so much easier to check sources this way" />
   </component>
 </project>
