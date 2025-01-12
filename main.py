@@ -19,9 +19,11 @@ class Zone(object):
             self.name, self.zone_id = self.find_zone()
 
     def find_zone(self) -> (str, str):
-        properties = call(f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&"
-                          f"include_geometry=false")["features"][0]["properties"]
+        properties = call(self.url_zones())["features"][0]["properties"]
         return properties["name"], properties["id"]
+
+    def url_zones(self) -> str:
+        return f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&include_geometry=false"
 
 
 class Place(object):
@@ -38,44 +40,38 @@ class Place(object):
             self.name, self.wfo, self.x, self.y = self.find_place()
         if forecast_zone is None:
             self.forecast_zone = Zone(latitude, longitude)
-            # todo url points
 
     def find_place(self) -> (str, str, str, str):
-        properties = call(f"https://api.weather.gov/points/{self.latitude},{self.longitude}")["properties"]
+        properties = call(self.url_points())["properties"]
         return (f'{properties["relativeLocation"]["properties"]["city"]}, '
                 f'{properties["relativeLocation"]["properties"]["state"]}',
                 properties["gridId"], properties["gridX"], properties["gridY"])
 
-    def url_forecast(self):
+    def url_points(self) -> str:
+        return f"https://api.weather.gov/points/{self.latitude},{self.longitude}"
+
+    def url_forecast(self) -> str:
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast"
 
-    def url_hourly_forecast(self):
-        return self.url_forecast() + "/hourly"
+    def url_hourly_forecast(self) -> str:
+        return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly"
 
-    def url_mapclick(self):
+    def url_mapclick(self) -> str:
         return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit=0&lg=english&"
                 f"FcstType=json")
     # todo graphical
 
-    def get_forecast(self):
+    def get_forecast(self) -> dict:
         return call(self.url_forecast())
 
-    def get_hourly_forecast(self):
+    def get_hourly_forecast(self) -> dict:
         return call(self.url_hourly_forecast())
 
-    def get_mapclick(self):
+    def get_mapclick(self) -> dict:
         return call(self.url_mapclick())
 
-    def get_observation(self):
+    def get_observation(self) -> dict:
         return self.get_mapclick()["currentobservation"]
-
-
-def check_ok() -> bool:
-    response = requests.get("https://api.weather.gov")
-    if response.status_code == 200:
-        return response.json()["status"] == "OK"
-    else:
-        raise BadResponse(f"{response.status_code}")
 
 
 def call(url: str) -> dict:
@@ -84,6 +80,10 @@ def call(url: str) -> dict:
         return response.json()
     else:
         raise BadResponse(f"{response.status_code}")
+
+
+def check_ok() -> bool:
+    return call("https://api.weather.gov")["status"] == "OK"
 
 
 def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
