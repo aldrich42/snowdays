@@ -26,6 +26,13 @@ class Place(object):
         return call(f"{URL_PREFIX}/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly")
 
 
+def find_place(latitude: str, longitude: str) -> Place:
+    properties = call(f"https://api.weather.gov/points/{latitude},{longitude}")["properties"]
+    return Place(f'{properties["relativeLocation"]["properties"]["city"]}, '
+                 f'{properties["relativeLocation"]["properties"]["city"]}',
+                 properties["gridId"], properties["gridX"], properties["gridY"])
+
+
 def check_ok() -> bool:
     response = requests.get(URL_PREFIX)
     if response.status_code == 200:
@@ -96,7 +103,7 @@ def fmt(value: float) -> str:
 
 
 places: dict[str: Place] = {
-    "test_place": Place("Boston", "BOX", 72, 90)
+    "test_place": find_place("42.3555", "-71.0565")
 }
 
 
