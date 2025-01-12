@@ -56,10 +56,13 @@ class Place(object):
     def url_hourly_forecast(self) -> str:
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly"
 
-    def url_mapclick(self) -> str:
-        return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit=0&lg=english&"
-                f"FcstType=json")
-    # todo graphical
+    def url_mapclick(self, unit: str = "1") -> str:  # si
+        return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit={unit}&"
+                f"lg=english&FcstType=json")
+
+    def url_graphical(self, unit: str = "0") -> str:  # us
+        return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit={unit}&"
+                f"lg=english&FcstType=graphical")
 
     def get_forecast(self) -> dict:
         return call(self.url_forecast())
@@ -181,6 +184,6 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
-    print(test_place.url_hourly_forecast())
+    print(test_place.url_graphical())
     print(test_place.get_hourly_forecast())
     main()
