@@ -16,12 +16,12 @@ class Zone(object):
         self.name: str = name
         self.zone_id: str = zone_id
         if None in {name, zone_id}:
-            self.name, self.zone_id = find_zone(latitude, longitude)
+            self.name, self.zone_id = self.find_zone()
 
-
-def find_zone(latitude: str, longitude: str) -> (str, str):
-    properties = call(f"https://api.weather.gov/zones?type=land&point={latitude},{longitude}&include_geometry=false")["features"][0]["properties"]
-    return properties["name"], properties["id"]
+    def find_zone(self) -> (str, str):
+        properties = call(f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&"
+                          f"include_geometry=false")["features"][0]["properties"]
+        return properties["name"], properties["id"]
 
 
 class Place(object):
@@ -35,10 +35,16 @@ class Place(object):
         self.y: str = y
         self.forecast_zone: Zone = forecast_zone
         if None in {name, wfo, x, y}:
-            self.name, self.wfo, self.x, self.y = find_place(latitude, longitude)
+            self.name, self.wfo, self.x, self.y = self.find_place()
         if forecast_zone is None:
             self.forecast_zone = Zone(latitude, longitude)
             # todo url points
+
+    def find_place(self) -> (str, str, str, str):
+        properties = call(f"https://api.weather.gov/points/{self.latitude},{self.longitude}")["properties"]
+        return (f'{properties["relativeLocation"]["properties"]["city"]}, '
+                f'{properties["relativeLocation"]["properties"]["state"]}',
+                properties["gridId"], properties["gridX"], properties["gridY"])
 
     def url_forecast(self):
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast"
@@ -62,13 +68,6 @@ class Place(object):
 
     def get_observation(self):
         return self.get_mapclick()["currentobservation"]
-
-
-def find_place(latitude: str, longitude: str) -> (str, str, str, str):
-    properties = call(f"https://api.weather.gov/points/{latitude},{longitude}")["properties"]
-    return (f'{properties["relativeLocation"]["properties"]["city"]}, '
-            f'{properties["relativeLocation"]["properties"]["state"]}',  # todo make a part of place
-            properties["gridId"], properties["gridX"], properties["gridY"])
 
 
 def check_ok() -> bool:
