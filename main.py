@@ -98,6 +98,20 @@ def convert_height(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
 
 
+def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
+    # height units: mps, mph
+
+    conversion_table: dict = {
+        ("mps", "mph"): 5280*(12*2.54/100)/3600,
+        ("mph", "mps"): 3600*(100/(12*2.54))/5280
+    }
+
+    try:
+        return value * conversion_table[(from_unit, to_unit)]
+    except KeyError:
+        raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
+
+
 def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
