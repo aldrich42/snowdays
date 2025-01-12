@@ -67,7 +67,7 @@ class Place(object):
 def find_place(latitude: str, longitude: str) -> (str, str, str, str):
     properties = call(f"https://api.weather.gov/points/{latitude},{longitude}")["properties"]
     return (f'{properties["relativeLocation"]["properties"]["city"]}, '
-            f'{properties["relativeLocation"]["properties"]["city"]}',  # todo fix, # make a part of place
+            f'{properties["relativeLocation"]["properties"]["state"]}',  # todo make a part of place
             properties["gridId"], properties["gridX"], properties["gridY"])
 
 
