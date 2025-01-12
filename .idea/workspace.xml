@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added apparent_temperature function">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="did some refactoring and added api calls to the mapclick thing">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736645164660</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="did some refactoring and added api calls to the mapclick thing">
+      <option name="closed" value="true" />
+      <created>1736714633690</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1736714633690</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +220,7 @@
     <MESSAGE value="added convert_speed function" />
     <MESSAGE value="added water_vapor_pressure function" />
     <MESSAGE value="added apparent_temperature function" />
-    <option name="LAST_COMMIT_MESSAGE" value="added apparent_temperature function" />
+    <MESSAGE value="did some refactoring and added api calls to the mapclick thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="did some refactoring and added api calls to the mapclick thing" />
   </component>
 </project>

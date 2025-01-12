@@ -21,15 +21,24 @@ class Place(object):
         if None in {name, wfo, x, y}:
             self.name, self.wfo, self.x, self.y = find_place(latitude, longitude)
 
+    def url_forecast(self):
+        return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast"
+
+    def url_hourly_forecast(self):
+        return self.url_forecast() + "/hourly"
+
+    def url_mapclick(self):
+        return (f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit=0&lg=english&"
+                f"FcstType=json")
+
     def get_forecast(self):
-        return call(f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast")
+        return call(self.url_forecast())
 
     def get_hourly_forecast(self):
-        return call(f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly")
+        return call(self.url_hourly_forecast())
 
     def get_mapclick(self):
-        return call(f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&unit=0&"
-                    f"lg=english&FcstType=json")
+        return call(self.url_mapclick())
 
     def get_observation(self):
         return self.get_mapclick()["currentobservation"]
@@ -153,5 +162,6 @@ def main():
 
 if __name__ == "__main__":
     print(check_ok())
+    print(test_place.url_mapclick())
     print(test_place.get_observation())
     main()
