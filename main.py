@@ -112,6 +112,11 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
 
 
+def water_vapor_pressure(dry_bulb_temperature, relative_humidity) -> float:
+    # C, % -> hPa
+    return relative_humidity / 100 * 6.105 * math.exp((17.27 * dry_bulb_temperature) / (237 + dry_bulb_temperature))
+
+
 def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
