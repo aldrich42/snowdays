@@ -50,6 +50,9 @@ class Place(object):
     def url_mapclick(self) -> str:
         return f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&FcstType=json"
 
+    def url_headlines(self) -> str:
+        return f"https://api.weather.gov/offices/{self.wfo}/headlines"
+
     def get_forecast(self) -> dict:
         return call(self.url_forecast())
 
