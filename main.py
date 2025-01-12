@@ -8,11 +8,38 @@ import requests
 URL_PREFIX = "https://api.weather.gov"
 
 
+class BadResponse(ValueError):
+    pass
+
+
 class Place(object):
-    def __init__(self, office: str, x_pos: int, y_pos: int):
-        self.office: str = office
-        self.x_pos: int = x_pos
-        self.y_pos: int = y_pos
+    def __init__(self, name: str, wfo: str, x: int, y: int):
+        self.name: str = name
+        self.wfo: str = wfo
+        self.x: int = x
+        self.y: int = y
+
+    def get_forecast(self):
+        return call(f"{URL_PREFIX}/gridpoints/{self.wfo}/{self.x},{self.y}/forecast")
+
+    def get_hourly_forecast(self):
+        return call(f"{URL_PREFIX}/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly")
+
+
+def check_ok() -> bool:
+    response = requests.get(URL_PREFIX)
+    if response.status_code == 200:
+        return response.json()["status"] == "OK"
+    else:
+        raise BadResponse(f"{response.status_code}")
+
+
+def call(url: str) -> dict:
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise BadResponse(f"{response.status_code}")
 
 
 def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
@@ -69,7 +96,7 @@ def fmt(value: float) -> str:
 
 
 places: dict[str: Place] = {
-    "test_place": Place("BOX", 72, 90)
+    "test_place": Place("Boston", "BOX", 72, 90)
 }
 
 
@@ -81,4 +108,11 @@ def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) 
     return random.random()
 
 
-print(fmt(chance_of_snow_day(266, 4)))
+def main():
+    print(fmt(chance_of_snow_day(266, 4)))
+
+
+if __name__ == "__main__":
+    print(check_ok())
+    print(places["test_place"].get_hourly_forecast())
+    main()
