@@ -172,6 +172,10 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
 
 
+def calculate_sunrise():
+    pass
+
+
 def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
