@@ -1,12 +1,9 @@
-import datetime
 import math
-import pytz
 import random
-import requests
 import numpy as np
-
-
-latlon = input(">>> ")
+import requests
+import datetime
+import pytz
 
 
 class BadResponse(Exception):
@@ -179,10 +176,6 @@ def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
 
-latlon = latlon.split(",")
-test_place = Place(latlon[0], latlon[1])
-
-
 def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
     dt: datetime.datetime = datetime.datetime.now(tz=pytz.timezone("EST"))
 
@@ -196,9 +189,12 @@ def main():
 
 
 if __name__ == "__main__":
+    latlon = input(">>> ").split(",")
+    test_place = Place(latlon[0], latlon[1])
     print(f"OK? {check_ok()}")
     main()
 
 
 # todo: find out what the products mean
 # todo: place all these places in one zone class
+# todo sunrise/sunset
