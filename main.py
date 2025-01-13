@@ -3,6 +3,10 @@ import math
 import pytz
 import random
 import requests
+import numpy as np
+
+
+latlon = input(">>> ")
 
 
 class BadResponse(Exception):
@@ -11,8 +15,8 @@ class BadResponse(Exception):
 
 class Place(object):
     def __init__(self, latitude: str, longitude: str, municipality: str | None = None, state: str | None = None,
-                 wfo: str | None = None, x: str | None = None, y: str | None = None, zone_name: str | None = None,
-                 zone_id: str | None = None):
+                 wfo: str | None = None, x: str | None = None, y: str | None = None,
+                 observation_station: str | None = None, zone_name: str | None = None, zone_id: str | None = None):
         self.latitude: str = latitude
         self.longitude: str = longitude
         self.municipality: str = municipality
@@ -20,12 +24,15 @@ class Place(object):
         self.wfo: str = wfo
         self.x: str = x
         self.y: str = y
+        self.observation_station: str = observation_station
         self.zone_name: str = zone_name
         self.zone_id: str = zone_id
         if None in {municipality, state, wfo, x, y}:
             self.municipality, self.state, self.wfo, self.x, self.y = self.find_place()
-        if None in {zone_name, zone_id}:
+        if zone_name is None or zone_id is None:
             self.zone_name, self.zone_id = self.find_zone()
+        if observation_station is None:
+            self.observation_station = self.find_observation_station()
 
     def find_place(self) -> (str, str, str, str, str):
         properties = call(self.url_points())["properties"]
@@ -37,11 +44,18 @@ class Place(object):
         properties = call(self.url_zones())["features"][0]["properties"]
         return properties["name"], properties["id"]
 
+    def find_observation_station(self) -> str:
+        station = call(self.url_observation_stations())["features"][0]["properties"]["stationIdentifier"]
+        return station
+
     def url_points(self) -> str:
         return f"https://api.weather.gov/points/{self.latitude},{self.longitude}"
 
     def url_zones(self) -> str:
         return f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&include_geometry=false"
+
+    def url_observation_stations(self) -> str:
+        return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/stations"
 
     def url_data(self) -> str:
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}"
@@ -52,11 +66,17 @@ class Place(object):
     def url_hourly_forecast(self) -> str:
         return f"https://api.weather.gov/gridpoints/{self.wfo}/{self.x},{self.y}/forecast/hourly"
 
+    def url_observations(self) -> str:
+        return f"https://api.weather.gov/stations/{self.observation_station}/observations/"
+
     def url_mapclick(self) -> str:
         return f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&FcstType=json"
 
     def url_headlines(self) -> str:
         return f"https://api.weather.gov/offices/{self.wfo}/headlines"
+
+    def url_alerts(self) -> str:
+        return f"https://api.weather.gov/alerts?zone={self.zone_id}"
 
     def get_data(self) -> dict:
         return call(self.url_data())
@@ -70,8 +90,14 @@ class Place(object):
     def get_mapclick(self) -> dict:
         return call(self.url_mapclick())
 
-    def get_observation(self) -> dict:
-        return self.get_mapclick()["currentobservation"]
+    def get_observations(self) -> dict:
+        return call(self.url_observations())
+
+    def get_headlines(self) -> dict:
+        return call(self.url_headlines())
+
+    def get_alerts(self) -> dict:
+        return call(self.url_alerts())
 
 
 def call(url: str) -> dict:
@@ -149,22 +175,12 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
 
 
-def water_vapor_pressure(dry_bulb_temperature: float, relative_humidity: float) -> float:
-    # C, % -> hPa
-    return relative_humidity / 100 * 6.105 * math.exp((17.27 * dry_bulb_temperature) / (237 + dry_bulb_temperature))
-
-
-def apparent_temperature(dry_bulb_temperature: float, relative_humidity: float, wind_speed: float) -> float:
-    # C, %, mps
-    e = water_vapor_pressure(dry_bulb_temperature, relative_humidity)
-    return dry_bulb_temperature + 0.33 * e - 0.7 * wind_speed - 4
-
-
 def fmt(value: float) -> str:
     return f"{math.floor(value * 100)}%"
 
 
-test_place = Place("42.3555", "-71.0565")  # boston
+latlon = latlon.split(",")
+test_place = Place(latlon[0], latlon[1])
 
 
 def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
@@ -180,6 +196,9 @@ def main():
 
 
 if __name__ == "__main__":
-    print(check_ok())
-    print(test_place.url_forecast())
+    print(f"OK? {check_ok()}")
     main()
+
+
+# todo: find out what the products mean
+# todo: place all these places in one zone class
