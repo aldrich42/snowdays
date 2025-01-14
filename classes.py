@@ -23,8 +23,8 @@ class Zone(object):
         pass
 
 
-class ObservationStation(object):
-    def __init__(self):
+class Station(object):
+    def __init__(self, station_id: str, name: str):
         pass
 
 
