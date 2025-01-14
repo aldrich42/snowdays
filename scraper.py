@@ -1,1 +1,1 @@
-from api_functions import *
+from api_functions import call_html

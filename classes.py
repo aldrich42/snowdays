@@ -1,5 +1,4 @@
-from functions import *
-from api_functions import *
+from api_functions import call_json
 
 
 class Point(object):
@@ -34,17 +33,17 @@ class Place(object):
             self.observation_station = self.find_observation_station()
 
     def find_place(self) -> (str, str, str, str, str):
-        properties = call(self.url_points())["properties"]
+        properties = call_json(self.url_points())["properties"]
         return (properties["relativeLocation"]["properties"]["city"],
                 properties["relativeLocation"]["properties"]["state"],
                 properties["gridId"], properties["gridX"], properties["gridY"])
 
     def find_zone(self) -> (str, str):
-        properties = call(self.url_zones())["features"][0]["properties"]
+        properties = call_json(self.url_zones())["features"][0]["properties"]
         return properties["name"], properties["id"]
 
     def find_observation_station(self) -> str:
-        station = call(self.url_observation_stations())["features"][0]["properties"]["stationIdentifier"]
+        station = call_json(self.url_observation_stations())["features"][0]["properties"]["stationIdentifier"]
         return station
 
     def url_points(self) -> str:
@@ -78,22 +77,22 @@ class Place(object):
         return f"https://api.weather.gov/alerts?zone={self.zone_id}"
 
     def get_data(self) -> dict:
-        return call(self.url_data())
+        return call_json(self.url_data())
 
     def get_forecast(self) -> dict:
-        return call(self.url_forecast())
+        return call_json(self.url_forecast())
 
     def get_hourly_forecast(self) -> dict:
-        return call(self.url_hourly_forecast())
+        return call_json(self.url_hourly_forecast())
 
     def get_mapclick(self) -> dict:
-        return call(self.url_mapclick())
+        return call_json(self.url_mapclick())
 
     def get_observations(self) -> dict:
-        return call(self.url_observations())
+        return call_json(self.url_observations())
 
     def get_headlines(self) -> dict:
-        return call(self.url_headlines())
+        return call_json(self.url_headlines())
 
     def get_alerts(self) -> dict:
-        return call(self.url_alerts())
+        return call_json(self.url_alerts())

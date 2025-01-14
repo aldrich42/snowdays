@@ -1,7 +1,5 @@
 import math
 import numpy as np
-import datetime
-import pytz
 
 
 def convert_temp(value: float, from_unit: str, to_unit: str) -> float:

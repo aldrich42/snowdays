@@ -1,6 +1,10 @@
 import random
+from api_functions import check_ok
 from scraper import *
+from functions import *
 from classes import *
+import datetime
+import pytz
 
 
 def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
@@ -19,7 +23,7 @@ def main():
     latlon = input(">>> ").split(",")
     if check_ok():
         test_place = Place(latlon[0], latlon[1])
-    print(fmt(chance_of_snow_day(266, 4)))
+        print(fmt(chance_of_snow_day(266, 4)))
 
 
 if __name__ == "__main__":
