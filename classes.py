@@ -18,13 +18,15 @@ class GridPoint(object):
 
 
 class Zone(object):
-    def __init__(self):
-        pass
+    def __init__(self, zone_id: str, name: str):
+        self.id: str = zone_id
+        self.name: str = name
 
 
 class Station(object):
     def __init__(self, station_id: str, name: str):
-        pass
+        self.id: str = station_id
+        self.name: str = name
 
 
 class Place(object):
