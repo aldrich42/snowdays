@@ -11,6 +11,11 @@ class GridPoint(object):
         pass
 
 
+class Zone(object):
+    def __init__(self):
+        pass
+
+
 class Place(object):
     def __init__(self, latitude: str, longitude: str, municipality: str | None = None, state: str | None = None,
                  wfo: str | None = None, x: str | None = None, y: str | None = None,
@@ -96,3 +101,8 @@ class Place(object):
 
     def get_alerts(self) -> dict:
         return call_json(self.url_alerts())
+
+
+class District(object):
+    def __init__(self):
+        pass
