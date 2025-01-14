@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added class ObservationStation">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="changed ObservationStation to Station">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
@@ -450,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736894748689</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="changed ObservationStation to Station">
+      <option name="closed" value="true" />
+      <created>1736897154381</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1736897154381</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed issue: Place.name read as [city], [city]" />
     <MESSAGE value="cleaned up code a little bit" />
     <MESSAGE value="made the mapclick be the right units" />
     <MESSAGE value="removed url graphical b/c nobody needs that" />
@@ -490,6 +497,7 @@
     <MESSAGE value="removed class Municipality" />
     <MESSAGE value="added mun (municipality) and state to class GridPoint" />
     <MESSAGE value="added class ObservationStation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added class ObservationStation" />
+    <MESSAGE value="changed ObservationStation to Station" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed ObservationStation to Station" />
   </component>
 </project>

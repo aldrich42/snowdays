@@ -9,13 +9,12 @@ class Point(object):
 
 
 class GridPoint(object):
-    def __init__(self, mun: str, state: str, wfo: str, xy: str):
+    def __init__(self, mun: str, state: str, wfo: str, grid_x: str, grid_y: str):
         self.mun: str = mun
         self.state: str = state
         self.wfo: str = wfo
-        self.xpos: str
-        self.ypos: str
-        self.xpos, self.ypos = tuple(xy.split(","))
+        self.grid_x: str = grid_x
+        self.grid_y: str = grid_y
 
 
 class Zone(object):
