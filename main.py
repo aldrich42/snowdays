@@ -1,6 +1,14 @@
-from functions import *
+import random
 from scraper import *
 from classes import *
+
+
+def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
+    dt: datetime.datetime = datetime.datetime.now(tz=pytz.timezone("EST"))
+
+    # mathy math
+
+    return random.random()
 
 
 def fmt(value: float) -> str:
@@ -8,13 +16,13 @@ def fmt(value: float) -> str:
 
 
 def main():
+    latlon = input(">>> ").split(",")
+    if check_ok():
+        test_place = Place(latlon[0], latlon[1])
     print(fmt(chance_of_snow_day(266, 4)))
 
 
 if __name__ == "__main__":
-    latlon = input(">>> ").split(",")
-    test_place = Place(latlon[0], latlon[1])
-    print(f"OK? {check_ok()}")
     main()
 
 

@@ -1,5 +1,4 @@
 import math
-import random
 import numpy as np
 import datetime
 import pytz
@@ -70,11 +69,3 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
 
 def calculate_sunrise():
     pass
-
-
-def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
-    dt: datetime.datetime = datetime.datetime.now(tz=pytz.timezone("EST"))
-
-    # mathy math
-
-    return random.random()
