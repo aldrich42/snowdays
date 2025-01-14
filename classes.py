@@ -2,13 +2,18 @@ from api_functions import call_json
 
 
 class Point(object):
-    def __init__(self):
-        pass
+    def __init__(self, latlon: str):
+        self.latitude: str
+        self.longitude: str
+        self.latitude, self.longitude = tuple(latlon.split(","))
 
 
 class GridPoint(object):
-    def __init__(self):
-        pass
+    def __init__(self, wfo: str, xy: str):
+        self.wfo: str = wfo
+        self.xpos: str
+        self.ypos: str
+        self.xpos, self.ypos = tuple(xy.split(","))
 
 
 class Zone(object):
