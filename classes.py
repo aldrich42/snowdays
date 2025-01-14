@@ -21,6 +21,11 @@ class Zone(object):
         pass
 
 
+class Municipality(object):
+    def __init__(self):
+        pass
+
+
 class Place(object):
     def __init__(self, latitude: str, longitude: str, municipality: str | None = None, state: str | None = None,
                  wfo: str | None = None, x: str | None = None, y: str | None = None,
