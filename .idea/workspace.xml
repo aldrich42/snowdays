@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added __init__ methods for Point and GridPoint">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added class Municipality">
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -417,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736894213660</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="added class Municipality">
+      <option name="closed" value="true" />
+      <created>1736894403945</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1736894403945</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -432,7 +440,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added apparent_temperature function" />
     <MESSAGE value="did some refactoring and added api calls to the mapclick thing" />
     <MESSAGE value="added url generation for mapclick because it's so much easier to check sources this way" />
     <MESSAGE value="added zone api calls" />
@@ -457,6 +464,7 @@
     <MESSAGE value="edited the call function to be broken up into call_json and call_html" />
     <MESSAGE value="added classes District and Zone" />
     <MESSAGE value="added __init__ methods for Point and GridPoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="added __init__ methods for Point and GridPoint" />
+    <MESSAGE value="added class Municipality" />
+    <option name="LAST_COMMIT_MESSAGE" value="added class Municipality" />
   </component>
 </project>
