@@ -9,7 +9,9 @@ class Point(object):
 
 
 class GridPoint(object):
-    def __init__(self, wfo: str, xy: str):
+    def __init__(self, mun: str, state: str, wfo: str, xy: str):
+        self.mun: str = mun
+        self.state: str = state
         self.wfo: str = wfo
         self.xpos: str
         self.ypos: str
