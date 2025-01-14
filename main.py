@@ -3,6 +3,10 @@ from scraper import *
 from classes import *
 
 
+def fmt(value: float) -> str:
+    return f"{math.floor(value * 100)}%"
+
+
 def main():
     print(fmt(chance_of_snow_day(266, 4)))
 

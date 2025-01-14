@@ -1,25 +1,8 @@
 import math
 import random
 import numpy as np
-import requests
 import datetime
 import pytz
-
-
-class BadResponse(Exception):
-    pass
-
-
-def call(url: str) -> dict:
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise BadResponse(f"{response.status_code}")
-
-
-def check_ok() -> bool:
-    return call("https://api.weather.gov")["status"] == "OK"
 
 
 def convert_temp(value: float, from_unit: str, to_unit: str) -> float:
@@ -87,10 +70,6 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
 
 def calculate_sunrise():
     pass
-
-
-def fmt(value: float) -> str:
-    return f"{math.floor(value * 100)}%"
 
 
 def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
