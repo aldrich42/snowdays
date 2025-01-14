@@ -2,6 +2,16 @@ from functions import *
 from api_functions import *
 
 
+class Point(object):
+    def __init__(self):
+        pass
+
+
+class GridPoint(object):
+    def __init__(self):
+        pass
+
+
 class Place(object):
     def __init__(self, latitude: str, longitude: str, municipality: str | None = None, state: str | None = None,
                  wfo: str | None = None, x: str | None = None, y: str | None = None,
