@@ -14,4 +14,4 @@ def call(url: str) -> dict:
 
 
 def check_ok() -> bool:
-    return call("https://api.weather.gov")["status"] == "OK"
+    return call("https://api.weather.gov/")["status"] == "OK"
