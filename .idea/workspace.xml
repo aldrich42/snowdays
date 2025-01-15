@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="changed signature a lil bit">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added class Location">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
-    </task>
-    <task id="LOCAL-00001" summary="getting started: added functions for cm/in conversion and c/f conversion (we'll use metric for this project), and a placeholder function to determine the chance of a snow day.">
-      <option name="closed" value="true" />
-      <created>1736380041906</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1736380041906</updated>
     </task>
     <task id="LOCAL-00002" summary="getting started: added functions for cm/in conversion and c/f conversion (we'll use metric for this project), and a placeholder function to determine the chance of a snow day.">
       <option name="closed" value="true" />
@@ -473,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736898133871</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="added class Location">
+      <option name="closed" value="true" />
+      <created>1736899765320</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1736899765335</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -488,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made the mapclick be the right units" />
     <MESSAGE value="removed url graphical b/c nobody needs that" />
     <MESSAGE value="fixed and shortened url mapclick" />
     <MESSAGE value="removed zone class" />
@@ -513,6 +513,7 @@
     <MESSAGE value="added class ObservationStation" />
     <MESSAGE value="changed ObservationStation to Station" />
     <MESSAGE value="changed signature a lil bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed signature a lil bit" />
+    <MESSAGE value="added class Location" />
+    <option name="LAST_COMMIT_MESSAGE" value="added class Location" />
   </component>
 </project>
