@@ -1,7 +1,13 @@
 from api_functions import call_json
+import numpy as np
 
 
 headers = None
+
+
+class Forecast(object):
+    def __init__(self):
+        pass
 
 
 class Point(object):

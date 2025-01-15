@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added rr9 stuff">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="made a better example">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
-    </task>
-    <task id="LOCAL-00015" summary="did some refactoring and added api calls to the mapclick thing">
-      <option name="closed" value="true" />
-      <created>1736714633690</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1736714633690</updated>
     </task>
     <task id="LOCAL-00016" summary="added url generation for mapclick because it's so much easier to check sources this way">
       <option name="closed" value="true" />
@@ -474,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736909183256</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="made a better example">
+      <option name="closed" value="true" />
+      <created>1736909814218</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1736909814218</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -489,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added the classes Point and Gridpoint" />
     <MESSAGE value="a little bit more reorganizing" />
     <MESSAGE value="edited the call function to be broken up into call_json and call_html" />
     <MESSAGE value="added classes District and Zone" />
@@ -514,6 +513,7 @@
     <MESSAGE value="never using kelvin" />
     <MESSAGE value="updated todo" />
     <MESSAGE value="added rr9 stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="added rr9 stuff" />
+    <MESSAGE value="made a better example" />
+    <option name="LAST_COMMIT_MESSAGE" value="made a better example" />
   </component>
 </project>
