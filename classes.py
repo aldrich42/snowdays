@@ -49,7 +49,6 @@ class GridPoint(object):
         return call_json(url, headers=headers)
 
 
-
 class Zone(object):
     def __init__(self, zone_id: str, name: str):
         self.id: str = zone_id
