@@ -74,15 +74,15 @@ class Location(object):
         self.zone: Zone
         self.station: Station
         if grid_data is None:
-            self.grid_data = latlon.get_grid_data()
+            self.grid_data = self.latlon.get_grid_data()
         else:
             self.grid_data = grid_data
         if zone is None:
-            self.zone = latlon.get_zone()
+            self.zone = self.latlon.get_zone()
         else:
             self.zone = zone
         if station is None:
-            self.station = grid_data.get_station()
+            self.station = self.grid_data.get_station()
         else:
             self.station = station
 

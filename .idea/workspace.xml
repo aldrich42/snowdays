@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="never going to use mapclick&#10;added radar">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="updated main to be more compatible with current setup">
+      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,14 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
-    </task>
-    <task id="LOCAL-00009" summary="removed some extra comments">
-      <option name="closed" value="true" />
-      <created>1736639190027</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1736639190027</updated>
     </task>
     <task id="LOCAL-00010" summary="added api call infrastructure">
       <option name="closed" value="true" />
@@ -474,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736903679813</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="updated main to be more compatible with current setup">
+      <option name="closed" value="true" />
+      <created>1736904534748</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1736904534748</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -489,7 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added get_data&#10;im a lil slow sometimes&#10;fixed observations&#10;removed a couple unneeded functions" />
     <MESSAGE value="refactored" />
     <MESSAGE value="added som files for restructuring" />
     <MESSAGE value="added api_functions file" />
@@ -514,6 +512,7 @@
     <MESSAGE value="added District.__init_" />
     <MESSAGE value="never going to use mapclick" />
     <MESSAGE value="never going to use mapclick&#10;added radar" />
-    <option name="LAST_COMMIT_MESSAGE" value="never going to use mapclick&#10;added radar" />
+    <MESSAGE value="updated main to be more compatible with current setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated main to be more compatible with current setup" />
   </component>
 </project>
