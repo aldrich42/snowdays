@@ -27,7 +27,8 @@ def main():
                      station=Station("KBOS", "Boston, Logan International Airport")),  # boston
         )
         print("accessed locations")
-        print(fmt(chance_of_snow_day(test_district)))
+        # print(fmt(chance_of_snow_day(test_district)))
+        print(list(test_district.center.get_forecast().temperature.keys())[0])
 
 
 if __name__ == "__main__":

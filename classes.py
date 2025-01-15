@@ -1,13 +1,26 @@
 from api_functions import call_json
-import numpy as np
+import datetime
 
 
 headers = None
 
 
+def nws_str_to_datetime(nws_str: str) -> datetime.datetime:
+    print(nws_str[11:13])
+    return datetime.datetime(int(nws_str[:4]), int(nws_str[5:7]), int(nws_str[8:10]),
+                             int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19]))
+
+
+def nws_dict_to_datetime_dict(json_data: dict) -> dict:
+    out: dict = {}
+    for value in json_data["values"]:
+        out[nws_str_to_datetime(value["validTime"])] = value["value"]
+    return out
+
+
 class Forecast(object):
-    def __init__(self):
-        pass
+    def __init__(self, json_data: dict):
+        self.temperature = nws_dict_to_datetime_dict(json_data["properties"]["temperature"])
 
 
 class Point(object):
@@ -96,6 +109,9 @@ class Location(object):
             self.station = self.grid_data.get_station()
         else:
             self.station = station
+
+    def get_forecast(self):
+        return Forecast(self.grid_data.get_forecast_json())
 
 
 class District(object):
