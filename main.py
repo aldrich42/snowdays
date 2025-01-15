@@ -38,3 +38,5 @@ if __name__ == "__main__":
 
 # todo: good product names: AFM, FZL, HYD, LCO, RR9
 # todo sunrise/sunset
+# todo use rr9 for
+# todo scrape power company's website
