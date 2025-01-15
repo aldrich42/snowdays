@@ -45,6 +45,11 @@ class GridPoint(object):
         url = f"https://api.weather.gov/offices/{self.wfo}/headlines"
         return call_json(url, headers=headers)
 
+    def get_rr9_chart(self):
+        url = f"https://api.weather.gov/products?office={self.radar}&type=RR9&limit=1"
+        url2 = call_json(url, headers=headers)["@graph"][0]["@id"]
+        return call_json(url2, headers=headers)["productText"]
+
 
 class Zone(object):
     def __init__(self, zone_id: str, name: str):
