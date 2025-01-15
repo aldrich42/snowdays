@@ -15,7 +15,7 @@ class Point(object):
         data = call_json(url, headers=headers)["properties"]
         return GridPoint(data["relativeLocation"]["properties"]["city"],
                          data["relativeLocation"]["properties"]["state"],
-                         data["gridId"], data["gridX"], data["gridY"])
+                         data["gridId"], data["gridX"], data["gridY"], data["radarStation"])
 
     def get_zone(self):
         url = f"https://api.weather.gov/zones?type=land&point={self.latitude},{self.longitude}&include_geometry=false"
@@ -24,12 +24,13 @@ class Point(object):
 
 
 class GridPoint(object):
-    def __init__(self, mun: str, state: str, wfo: str, grid_x: str, grid_y: str):
+    def __init__(self, mun: str, state: str, wfo: str, grid_x: str, grid_y: str, radar: str):
         self.mun: str = mun
         self.state: str = state
         self.wfo: str = wfo
         self.grid_x: str = grid_x
         self.grid_y: str = grid_y
+        self.radar: str = radar
 
     def get_station(self):
         url = f"https://api.weather.gov/gridpoints/{self.wfo}/{self.grid_x},{self.grid_y}/stations"
