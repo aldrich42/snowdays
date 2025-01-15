@@ -36,6 +36,5 @@ if __name__ == "__main__":
     main()
 
 
-# todo: find out what the products mean
-# todo: place all these places in one zone class
+# todo: good product names: AFM, FZL, HYD, LCO, RR9
 # todo sunrise/sunset
