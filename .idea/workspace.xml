@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="fixed pep8">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added District.__init_">
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,14 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added class Place and a test place (boston)">
-      <option name="closed" value="true" />
-      <created>1736637752153</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1736637752153</updated>
     </task>
     <task id="LOCAL-00007" summary="added function fmt">
       <option name="closed" value="true" />
@@ -474,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736902097366</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added District.__init_">
+      <option name="closed" value="true" />
+      <created>1736902439092</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1736902439093</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -489,7 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed a lil stupid bug" />
     <MESSAGE value="separated city and state" />
     <MESSAGE value="added get_data&#10;im a lil slow sometimes" />
     <MESSAGE value="added get_data&#10;im a lil slow sometimes&#10;fixed observations&#10;removed a couple unneeded functions" />
@@ -514,6 +512,7 @@
     <MESSAGE value="removed class Place&#10;added headers to two call_json instances" />
     <MESSAGE value="fixed bad reference" />
     <MESSAGE value="fixed pep8" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed pep8" />
+    <MESSAGE value="added District.__init_" />
+    <option name="LAST_COMMIT_MESSAGE" value="added District.__init_" />
   </component>
 </project>

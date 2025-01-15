@@ -22,10 +22,6 @@ class Point(object):
         data = call_json(url, headers=headers)["features"][0]["properties"]
         return Zone(data["id"], data["name"])
 
-    def get_mapclick_json(self):
-        url = f"https://forecast.weather.gov/MapClick.php?lat={self.latitude}&lon={self.longitude}&FcstType=json"
-        return call_json(url, headers=headers)
-
 
 class GridPoint(object):
     def __init__(self, mun: str, state: str, wfo: str, grid_x: str, grid_y: str):
