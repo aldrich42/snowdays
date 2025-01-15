@@ -116,6 +116,11 @@ class Place(object):
         return call_json(self.url_alerts())
 
 
+class Location(object):
+    def __init__(self):
+        pass
+
+
 class District(object):
     def __init__(self):
         pass
