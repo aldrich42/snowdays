@@ -4,11 +4,10 @@ from scraper import *
 from functions import *
 from classes import *
 import datetime
-import pytz
 
 
-def chance_of_snow_day(predicted_temperature: float, predicted_snowfall: float) -> float:
-    dt: datetime.datetime = datetime.datetime.now(tz=pytz.timezone("EST"))
+def chance_of_snow_day(area: District) -> float:
+    dt: datetime.datetime = datetime.datetime.now()
 
     # mathy math
 
@@ -20,10 +19,17 @@ def fmt(value: float) -> str:
 
 
 def main():
-    latlon = input(">>> ").split(",")
     if check_ok():
-        test_place = Place(latlon[0], latlon[1])
-        print(fmt(chance_of_snow_day(266, 4)))
+        test_district: District = District(
+            Location(Point("40.7128,-74.0060")),  # new york
+            Location(Point("34.0549,-118.2426")),  # los angeles
+            Location(Point("41.8781,-87.6298")),  # chicago
+            Location(Point("29.7601,-95.3701")),  # houston
+            Location(Point("33.4484,-112.0740")),  # phoenix
+            Location(Point("39.9526,-75.1652")),  # philadelphia
+        )
+        print("accessed locations")
+        print(fmt(chance_of_snow_day(test_district)))
 
 
 if __name__ == "__main__":
