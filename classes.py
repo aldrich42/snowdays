@@ -91,5 +91,6 @@ class Location(object):
 
 
 class District(object):
-    def __init__(self):
-        pass
+    def __init__(self, center: Location, *margin: Location):
+        self.center: Location = center
+        self.margin: tuple[Location, ...] = margin

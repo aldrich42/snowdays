@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="fixed bad reference">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="fixed pep8">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
-    </task>
-    <task id="LOCAL-00005">
-      <option name="closed" value="true" />
-      <created>1736636659002</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1736636659002</updated>
     </task>
     <task id="LOCAL-00006" summary="added class Place and a test place (boston)">
       <option name="closed" value="true" />
@@ -473,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736901999361</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="fixed pep8">
+      <option name="closed" value="true" />
+      <created>1736902097366</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1736902097366</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -488,7 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added url_headlines method" />
     <MESSAGE value="fixed a lil stupid bug" />
     <MESSAGE value="separated city and state" />
     <MESSAGE value="added get_data&#10;im a lil slow sometimes" />
@@ -513,6 +513,7 @@
     <MESSAGE value="added Location.__init__" />
     <MESSAGE value="removed class Place&#10;added headers to two call_json instances" />
     <MESSAGE value="fixed bad reference" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bad reference" />
+    <MESSAGE value="fixed pep8" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed pep8" />
   </component>
 </project>
