@@ -66,7 +66,7 @@ class Station(object):
         self.name: str = name
 
     def get_observations_json(self):
-        url = f"https://api.weather.gov/stations/{self.observation_station}/observations"
+        url = f"https://api.weather.gov/stations/{self.id}/observations"
         return call_json(url, headers=headers)
 
 
