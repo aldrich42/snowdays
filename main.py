@@ -13,7 +13,7 @@ class BadResponse(Exception):
 
 
 def sigmoid(x):
-    pass
+    return 1 / (1 + math.exp(-x))
 
 
 def call(url: str, headers: dict | None) -> requests.Response:
@@ -34,7 +34,7 @@ def call_html(url: str, headers: dict | None = None) -> NotImplemented:
 
 
 def check_ok() -> bool:
-    return call_json("https://api.weather.gov/")["status"] == "OK"
+    return call_json("https://api.weather.gov")["status"] == "OK"
 
 
 def nws_duration_to_int(nws_duration: str) -> int:
@@ -62,9 +62,11 @@ def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
         dt, dur = nws_str_to_datetime_with_duration(value["validTime"])
         if method == 0:
             for i in range(dur):
+                # v = value["value"]
                 out[dt + datetime.timedelta(hours=i)] = value["value"]
         elif method == 1:
             for i in range(dur):
+                # v = value["value"]
                 out[dt + datetime.timedelta(hours=i)] = value["value"] / dur
         else:
             raise ValueError(f"unknown method: {method.__repr__()}")
@@ -86,8 +88,20 @@ class Forecast(object):
         self.snowfall = nws_dict_to_datetime_dict(json_data["properties"]["snowfallAmount"], method=1)
 
 
-class RR9Report(object):
-    pass
+class FZL(object):
+    def __init__(self, str_data):
+        self.i = str_data
+
+
+class LCO(object):
+    def __init__(self, str_data):
+        self.i = str_data
+
+
+class RR9(object):
+    def __init__(self, str_data):
+        self.i = str_data
+
 
 class Observations(object):
     def __init__(self, json_data: dict):
@@ -102,9 +116,9 @@ class Observations(object):
         self.wind_direction = properties["windDirection"]["value"]
         self.wind_speed = properties["windSpeed"]["value"]
         # self.prop = properties["probabilityOfPrecipitation"]["value"]
-        # self.quop = properties["quantitativePrecipitation"], ["value"]
-        # self.ice = properties["iceAccumulation"], ["value"]  # all these are prev precip
-        # self.snowfall = properties["snowfallAmount"], ["value"]
+        # self.quop = properties["quantitativePrecipitation"]["value"]
+        # self.ice = properties["iceAccumulation"]["value"]  # all these are prev precip
+        # self.snowfall = properties["snowfallAmount"]["value"]
 
 class Alert(object):  # keep?
     pass
@@ -154,8 +168,8 @@ class GridPoint(object):
         url = f"https://api.weather.gov/offices/{self.wfo}/headlines"
         return call_json(url, headers=nws_headers)
 
-    def get_rr9_chart(self):
-        url = f"https://api.weather.gov/products?office={self.radar}&type=RR9&limit=1"
+    def get_product(self, product_code: str):
+        url = f"https://api.weather.gov/products?office={self.radar}&type={product_code}&limit=1"
         url2 = call_json(url, headers=nws_headers)["@graph"][0]["@id"]
         return call_json(url2, headers=nws_headers)["productText"]
 
@@ -203,8 +217,14 @@ class Location(object):
     def get_forecast(self):
         return Forecast(self.grid_data.get_forecast_json())
 
+    def get_fzl(self):
+        return FZL(self.grid_data.get_product("FZL"))
+
+    def get_lco(self):
+        return LCO(self.grid_data.get_product("LCO"))
+
     def get_rr9(self):
-        pass
+        return RR9(self.grid_data.get_product("RR9"))
 
     def get_observations(self):
         return Observations(self.station.get_observations_json())
@@ -227,24 +247,24 @@ def snowday_score():
 
 
 def fmt(value: float) -> str:
-    return f"{math.floor(value * 100)}%"
+    return f"{math.floor(sigmoid(value) * 100)}%"
 
 
 def main():
     if check_ok():
         test_district: District = District(
             Location(Point("42.3555,-71.0565"),
-                     grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
-                     zone=Zone("MAZ025", "Suffolk"),
-                     station=Station("KBOS", "Boston, Logan International Airport")
+                     # grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
+                     # zone=Zone("MAZ025", "Suffolk"),
+                     # station=Station("KBOS", "Boston, Logan International Airport")
                      )
         )
-        print(list(test_district.center.get_observations()))
+        print(test_district.center.get_rr9().i)
 
 
 if __name__ == "__main__":
     main()
 
 
-# todo: good product names: AFM, FZL, HYD, LCO, RR9
+# todo: good product names: HYD, RR9
 # todo scrape power company's website
