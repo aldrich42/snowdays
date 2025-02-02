@@ -27,6 +27,15 @@ def australian_at(temp_c: float, rh: float, wind_speed_kph):
     return temp_c + 0.33 * vapor_pressure - 0.7 * wind_speed_mps - 4
 
 
+def count_calls(func):
+    def wrapper(*args, **kwargs):
+        wrapper.num_calls += 1
+        return func(*args, **kwargs)
+    wrapper.num_calls = 0
+    return wrapper
+
+
+@count_calls
 def call(url: str, headers: dict | None) -> requests.Response:
     response = requests.get(url, headers=headers)
     print(f"GET: {url} ({response.status_code})")
@@ -323,6 +332,7 @@ def main():
 if __name__ == "__main__":
     t0 = time()
     main()
+    print(call.num_calls)
     print(time() - t0)
 
 
