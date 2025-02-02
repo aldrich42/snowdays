@@ -12,6 +12,10 @@ class BadResponse(Exception):
     pass
 
 
+def sigmoid(x):
+    pass
+
+
 def call(url: str, headers: dict | None) -> requests.Response:
     response = requests.get(url, headers=headers)
     print(f"GET: {url} ({response.status_code})")
@@ -42,7 +46,7 @@ def nws_duration_to_int(nws_duration: str) -> int:
 
 
 def nws_str_to_datetime(nws_str: str) -> (datetime.datetime, int):
-    duration = nws_duration_to_int(nws_str[25:])
+    duration = nws_duration_to_int(nws_str[26:])
     return datetime.datetime(int(nws_str[:4]), int(nws_str[5:7]), int(nws_str[8:10]),
                              int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19])), duration
 
@@ -75,6 +79,18 @@ class Forecast(object):
         self.quop = nws_dict_to_datetime_dict(json_data["properties"]["quantitativePrecipitation"], method=1)
         self.ice = nws_dict_to_datetime_dict(json_data["properties"]["iceAccumulation"], method=1)
         self.snowfall = nws_dict_to_datetime_dict(json_data["properties"]["snowfallAmount"], method=1)
+
+
+class Observation(object):
+    pass
+
+
+class RR9Report(object):
+    pass
+
+
+class Alert(object):  # keep?
+    pass
 
 
 class Point(object):
@@ -125,6 +141,7 @@ class GridPoint(object):
         url = f"https://api.weather.gov/products?office={self.radar}&type=RR9&limit=1"
         url2 = call_json(url, headers=nws_headers)["@graph"][0]["@id"]
         return call_json(url2, headers=nws_headers)["productText"]
+
 
 class Zone(object):
     def __init__(self, zone_id: str, name: str):
@@ -224,12 +241,11 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
 
 
-def chance_of_snow_day(area: District) -> float:
-    dt: datetime.datetime = datetime.datetime.now()
+def neural_net():
+    pass
 
-    # mathy math
-
-    return random.random()
+def snowday_score():
+    pass
 
 
 def fmt(value: float) -> str:
@@ -244,8 +260,7 @@ def main():
                      zone=Zone("MAZ025", "Suffolk"),
                      station=Station("KBOS", "Boston, Logan International Airport")),  # boston
         )
-        # print(fmt(chance_of_snow_day(test_district)))
-        print(test_district.center.get_forecast().temp)
+        print(list(test_district.center.get_forecast().temp.keys())[0])
 
 
 if __name__ == "__main__":
@@ -253,6 +268,4 @@ if __name__ == "__main__":
 
 
 # todo: good product names: AFM, FZL, HYD, LCO, RR9
-# todo sunrise/sunset
-# todo use rr9 for
 # todo scrape power company's website
