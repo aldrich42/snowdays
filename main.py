@@ -8,15 +8,7 @@ import datetime
 
 
 nws_headers = None
-sample_locations = {
-    "Boston": "42.3555,-71.0565",
-    "Revere": "42.4084,-71.0120",
-    "Lynn": "42.4698,-70.9569",
-    "Marblehead": "42.4698,-70.9569",
-    "Salem": "42.5197,-70.8955",
-    "Quincy": "42.2529,-71.0023",
-    "Weymouth": "42.2181,-70.9410"
-}
+sample_locations = ["42.3555,-71.0565", "42.4084,-71.0120", "42.4698,-70.9569"]
 
 
 class BadResponse(Exception):
@@ -77,6 +69,7 @@ def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
                     v = 0.0
                 else:
                     v = float(value["value"])
+                out[dt + datetime.timedelta(hours=i)] = v / dur
         elif method == 1:
             for i in range(dur):
                 if value["value"] == "null":
@@ -145,6 +138,9 @@ class Point(object):
         self.longitude: str
         self.latitude, self.longitude = tuple(latlon_str.split(","))
 
+    def __repr__(self):
+        return f"Point('{self.latitude},{self.longitude}')"
+
     def get_grid_data(self):
         url = f"https://api.weather.gov/points/{self.latitude},{self.longitude}"
         data = call_json(url, headers=nws_headers)["properties"]
@@ -170,6 +166,10 @@ class GridPoint(object):
         self.grid_y: str = grid_y
         self.radar: str = radar
 
+    def __repr__(self):
+        return (f"GridPoint({self.mun.__repr__()}, '{self.state}', '{self.wfo}', '{self.grid_x}', '{self.grid_y}', "
+                f"'{self.radar}')")
+
     def get_station(self):
         url = f"https://api.weather.gov/gridpoints/{self.wfo}/{self.grid_x},{self.grid_y}/stations"
         data = call_json(url, headers=nws_headers)["features"][0]["properties"]
@@ -194,6 +194,9 @@ class Zone(object):
         self.id: str = zone_id
         self.name: str = name
 
+    def __repr__(self):
+        return f"Zone('{self.id}', {self.name.__repr__()})"
+
     def get_alerts_json(self):
         url = f"https://api.weather.gov/alerts?zone={self.id}"
         return call_json(url, headers=nws_headers)
@@ -203,6 +206,9 @@ class Station(object):
     def __init__(self, station_id: str, name: str):
         self.id: str = station_id
         self.name: str = name
+
+    def __repr__(self):
+        return f"Station('{self.id}', {self.name.__repr__()})"
 
     def get_observations_json(self):
         url = f"https://api.weather.gov/stations/{self.id}/observations"
@@ -229,6 +235,14 @@ class Location(object):
         else:
             self.station = station
 
+    def __repr__(self):
+        return (f"Location({self.latlon.__repr__()}, grid_data={self.grid_data.__repr__()}, "
+                f"zone={self.zone.__repr__()}, station={self.station.__repr__()})")
+
+    def __str__(self):
+        return (f"{self.grid_data.mun}, {self.grid_data.state} ({self.latlon.latitude}, {self.latlon.longitude}): "
+                f"{self.grid_data.wfo} {self.grid_data.grid_x}, {self.grid_data.grid_y}")
+
     def get_forecast(self):
         return Forecast(self.grid_data.get_forecast_json())
 
@@ -246,9 +260,22 @@ class Location(object):
 
 
 class District(object):
-    def __init__(self, center: Location, *margin: Location):
+    def __init__(self, name: str, center: Location, *margin: Location):
+        self.name: str = name
         self.center: Location = center
         self.margin: tuple[Location, ...] = margin
+
+    def __repr__(self):
+        margin_str = ""
+        for i in self.margin:
+            margin_str += f", {i.__repr__()}"
+        return f"District({self.center.__repr__()}{margin_str})"
+
+    def __str__(self):
+        margin_str = ""
+        for i in self.margin:
+            margin_str += f"\t{i}\n"
+        return f"{self.name}: (\n\t{self.center}\n{margin_str})"
 
 
 def convert():
@@ -258,6 +285,10 @@ def neural_net():
     pass
 
 def snowday_score(area: District):
+    forecasts = [area.center.get_forecast()] + [i.get_forecast() for i in area.margin]
+    rr9s = [area.center.get_rr9()] + [i.get_rr9() for i in area.margin]
+    rr9s = [area.center.get_rr9()] + [i.get_rr9() for i in area.margin]
+    rr9s = [area.center.get_rr9()] + [i.get_rr9() for i in area.margin]
     pass
 
 
@@ -268,19 +299,13 @@ def fmt(value: float) -> str:
 def main():
     if check_ok():
         test_district: District = District(
-            # Location(Point("")
-            Location(Point(sample_locations["Boston"]),
-                     # grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
-                     # zone=Zone("MAZ025", "Suffolk"),
-                     # station=Station("KBOS", "Boston, Logan International Airport")
-                     ),
-            Location(Point(sample_locations["Revere"])),
-            Location(Point(sample_locations["Lynn"])),
-            Location(Point(sample_locations["Marblehead"])),
-            Location(Point(sample_locations["Salem"])),
-            Location(Point(sample_locations["Quincy"])),
-            Location(Point(sample_locations["Weymouth"]))
+            "Coastal Massachusetts",
+            Location(Point(sample_locations[0])),
+            Location(Point(sample_locations[1])),
+            Location(Point(sample_locations[2])),
         )
+        snowday_score(test_district)
+        print(test_district)
 
 
 if __name__ == "__main__":
