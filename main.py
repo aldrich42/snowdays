@@ -33,20 +33,28 @@ def check_ok() -> bool:
     return call_json("https://api.weather.gov/")["status"] == "OK"
 
 
+def nws_duration_to_int(nws_duration: str) -> int:
+    values = nws_duration.split("T")
+    if values[0] == "P":
+        return int(values[1][:-1])
+    else:
+        return int(values[0][1:-1]) * int(values[1][:-1])
+
+
 def nws_str_to_datetime(nws_str: str) -> (datetime.datetime, int):
-    duration = int(nws_str[28:-1])
+    duration = nws_duration_to_int(nws_str[25:])
     return datetime.datetime(int(nws_str[:4]), int(nws_str[5:7]), int(nws_str[8:10]),
                              int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19])), duration
 
 
-def nws_dict_to_datetime_dict(json_data: dict, method: str) -> dict:
+def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
     out: dict = {}
     for value in json_data["values"]:
         dt, dur = nws_str_to_datetime(value["validTime"])
-        if method == "stay":
+        if method == 0:
             for i in range(dur):
                 out[dt + datetime.timedelta(hours=i)] = value["value"]
-        elif method == "split":
+        elif method == 1:
             for i in range(dur):
                 out[dt + datetime.timedelta(hours=i)] = value["value"] / dur
         else:
@@ -56,17 +64,17 @@ def nws_dict_to_datetime_dict(json_data: dict, method: str) -> dict:
 
 class Forecast(object):
     def __init__(self, json_data: dict):
-        self.temp = nws_dict_to_datetime_dict(json_data["properties"]["temperature"], "stay")
-        self.dew = nws_dict_to_datetime_dict(json_data["properties"]["dewpoint"], "stay")
-        self.rh = nws_dict_to_datetime_dict(json_data["properties"]["relativeHumidity"], "stay")
-        self.at = nws_dict_to_datetime_dict(json_data["properties"]["apparentTemperature"], "stay")
-        self.wind_chill = nws_dict_to_datetime_dict(json_data["properties"]["windChill"], "stay")
-        self.wind_direction = nws_dict_to_datetime_dict(json_data["properties"]["windDirection"], "stay")
-        self.wind_speed = nws_dict_to_datetime_dict(json_data["properties"]["windSpeed"], "stay")
-        self.prop = nws_dict_to_datetime_dict(json_data["probabilityOfPrecipitation"]["dewpoint"], "stay")
-        self.quop = nws_dict_to_datetime_dict(json_data["properties"]["quantitativePrecipitation"], "spread")
-        self.ice = nws_dict_to_datetime_dict(json_data["properties"]["iceAccumulation"], "spread")
-        self.snowfall = nws_dict_to_datetime_dict(json_data["properties"]["snowfallAmount"], "spread")
+        self.temp = nws_dict_to_datetime_dict(json_data["properties"]["temperature"])
+        self.dew = nws_dict_to_datetime_dict(json_data["properties"]["dewpoint"])
+        self.rh = nws_dict_to_datetime_dict(json_data["properties"]["relativeHumidity"])
+        self.at = nws_dict_to_datetime_dict(json_data["properties"]["apparentTemperature"])
+        self.wind_chill = nws_dict_to_datetime_dict(json_data["properties"]["windChill"])
+        self.wind_direction = nws_dict_to_datetime_dict(json_data["properties"]["windDirection"])
+        self.wind_speed = nws_dict_to_datetime_dict(json_data["properties"]["windSpeed"])
+        self.prop = nws_dict_to_datetime_dict(json_data["properties"]["probabilityOfPrecipitation"])
+        self.quop = nws_dict_to_datetime_dict(json_data["properties"]["quantitativePrecipitation"], method=1)
+        self.ice = nws_dict_to_datetime_dict(json_data["properties"]["iceAccumulation"], method=1)
+        self.snowfall = nws_dict_to_datetime_dict(json_data["properties"]["snowfallAmount"], method=1)
 
 
 class Point(object):
