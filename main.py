@@ -21,6 +21,12 @@ def rational_normal(x):
     return 1 - 1 / (1 + x)
 
 
+def australian_at(temp_c: float, rh: float, wind_speed_kph):
+    wind_speed_mps = wind_speed_kph / 3.6
+    vapor_pressure = rh * 6.105 * exp((17.27 * temp_c) / (237.7 + temp_c))
+    return temp_c + 0.33 * vapor_pressure - 0.7 * wind_speed_mps - 4
+
+
 def call(url: str, headers: dict | None) -> requests.Response:
     response = requests.get(url, headers=headers)
     print(f"GET: {url} ({response.status_code})")
@@ -121,13 +127,13 @@ class Observations(object):
         self.temp = float(properties["temperature"]["value"])
         self.dew = float(properties["dewpoint"]["value"])
         self.rh = float(properties["relativeHumidity"]["value"])
-        # self.at = properties["apparentTemperature"]["value"]
         self.wind_chill = float(properties["windChill"]["value"])
         self.wind_direction = float(properties["windDirection"]["value"])
         self.wind_speed = float(properties["windSpeed"]["value"])
         # self.precipitation_1h = float(properties["precipitationLastHour"]["value"])
         # self.precipitation_3h = float(properties["precipitationLast3Hours"]["value"])
         # self.precipitation_6h = float(properties["precipitationLast6Hours"]["value"])
+        self.at = australian_at(self.temp, self.rh, self.wind_speed)
 
 class Alert(object):  # keep?
     pass
