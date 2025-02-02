@@ -219,7 +219,8 @@ def main():
             Location(Point("42.3555,-71.0565"),
                      grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
                      zone=Zone("MAZ025", "Suffolk"),
-                     station=Station("KBOS", "Boston, Logan International Airport")),  # boston
+                     station=Station("KBOS", "Boston, Logan International Airport")
+                     )
         )
         print(list(test_district.center.get_forecast().temp.keys())[0])
 
