@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added __str__ and __repr__ methods">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="modified class District to only have three locations b/c six is excessive">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -450,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738522928285</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="modified class District to only have three locations b/c six is excessive">
+      <option name="closed" value="true" />
+      <created>1738524133765</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1738524133765</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="made the mapclick be the right units" />
     <MESSAGE value="removed url graphical b/c nobody needs that" />
     <MESSAGE value="fixed and shortened url mapclick" />
     <MESSAGE value="removed zone class" />
@@ -490,6 +496,7 @@
     <MESSAGE value="converted forecast data into floats" />
     <MESSAGE value="converted observations into floats and added more data" />
     <MESSAGE value="added __str__ and __repr__ methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="added __str__ and __repr__ methods" />
+    <MESSAGE value="modified class District to only have three locations b/c six is excessive" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified class District to only have three locations b/c six is excessive" />
   </component>
 </project>

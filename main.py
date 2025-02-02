@@ -1,6 +1,5 @@
-import math
+from math import exp
 import time
-
 import numpy as np
 import requests
 import random
@@ -15,8 +14,12 @@ class BadResponse(Exception):
     pass
 
 
-def sigmoid(x):
-    return 1 / (1 + math.exp(-x))
+def sigmoid_normal(x):
+    return 1 / (1 + exp(-x))
+
+
+def rational_normal(x):
+    return 1 - 1 / (1 + x)
 
 
 def call(url: str, headers: dict | None) -> requests.Response:
@@ -288,7 +291,7 @@ def snowday_score(area: District):
 
 
 def fmt(value: float) -> str:
-    return f"{math.floor(sigmoid(value) * 100)}%"
+    return f"{math.floor(sigmoid_normal(value) * 100)}%"
 
 
 def main():
