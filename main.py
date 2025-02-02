@@ -1,4 +1,6 @@
 import math
+import time
+
 import numpy as np
 import requests
 import random
@@ -6,6 +8,15 @@ import datetime
 
 
 nws_headers = None
+sample_locations = {
+    "Boston": "42.3555,-71.0565",
+    "Revere": "42.4084,-71.0120",
+    "Lynn": "42.4698,-70.9569",
+    "Marblehead": "42.4698,-70.9569",
+    "Salem": "42.5197,-70.8955",
+    "Quincy": "42.2529,-71.0023",
+    "Weymouth": "42.2181,-70.9410"
+}
 
 
 class BadResponse(Exception):
@@ -113,17 +124,16 @@ class Observations(object):
         properties = json_data["features"][0]["properties"]
         print(properties)
         self.timestamp: datetime = nws_str_to_datetime(properties["timestamp"])
-        self.temp = properties["temperature"]["value"]
-        self.dew = properties["dewpoint"]["value"]
-        self.rh = properties["relativeHumidity"]["value"]
+        self.temp = float(properties["temperature"]["value"])
+        self.dew = float(properties["dewpoint"]["value"])
+        self.rh = float(properties["relativeHumidity"]["value"])
         # self.at = properties["apparentTemperature"]["value"]
-        self.wind_chill = properties["windChill"]["value"]
-        self.wind_direction = properties["windDirection"]["value"]
-        self.wind_speed = properties["windSpeed"]["value"]
-        # self.prop = properties["probabilityOfPrecipitation"]["value"]
-        # self.quop = properties["quantitativePrecipitation"]["value"]
-        # self.ice = properties["iceAccumulation"]["value"]  # all these are prev precip
-        # self.snowfall = properties["snowfallAmount"]["value"]
+        self.wind_chill = float(properties["windChill"]["value"])
+        self.wind_direction = float(properties["windDirection"]["value"])
+        self.wind_speed = float(properties["windSpeed"]["value"])
+        self.precipitation_1h = float(properties["precipitationLastHour"]["value"])
+        self.precipitation_3h = float(properties["precipitationLast3Hours"]["value"])
+        self.precipitation_6h = float(properties["precipitationLast6Hours"]["value"])
 
 class Alert(object):  # keep?
     pass
@@ -247,7 +257,7 @@ def convert():
 def neural_net():
     pass
 
-def snowday_score():
+def snowday_score(area: District):
     pass
 
 
@@ -258,17 +268,25 @@ def fmt(value: float) -> str:
 def main():
     if check_ok():
         test_district: District = District(
-            Location(Point("42.3555,-71.0565"),
+            # Location(Point("")
+            Location(Point(sample_locations["Boston"]),
                      # grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
                      # zone=Zone("MAZ025", "Suffolk"),
                      # station=Station("KBOS", "Boston, Logan International Airport")
-                     )
+                     ),
+            Location(Point(sample_locations["Revere"])),
+            Location(Point(sample_locations["Lynn"])),
+            Location(Point(sample_locations["Marblehead"])),
+            Location(Point(sample_locations["Salem"])),
+            Location(Point(sample_locations["Quincy"])),
+            Location(Point(sample_locations["Weymouth"]))
         )
-        print(test_district.center.get_rr9().i)
 
 
 if __name__ == "__main__":
+    t0 = time.time()
     main()
+    print(time.time() - t0)
 
 
 # todo: good product names: HYD, RR9

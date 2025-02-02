@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="worked on products">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="converted forecast data into floats">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -425,7 +426,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738516306639</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="converted forecast data into floats">
+      <option name="closed" value="true" />
+      <created>1738516388397</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1738516388397</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added zone api calls" />
     <MESSAGE value="fixed issue: Place.name read as [city], [city]" />
     <MESSAGE value="cleaned up code a little bit" />
     <MESSAGE value="made the mapclick be the right units" />
@@ -465,6 +473,7 @@
     <MESSAGE value="removed obvious comment" />
     <MESSAGE value="mostly done with observations" />
     <MESSAGE value="worked on products" />
-    <option name="LAST_COMMIT_MESSAGE" value="worked on products" />
+    <MESSAGE value="converted forecast data into floats" />
+    <option name="LAST_COMMIT_MESSAGE" value="converted forecast data into floats" />
   </component>
 </project>
