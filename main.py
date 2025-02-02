@@ -124,11 +124,6 @@ class LCO(object):  # todo make real
         self.i = str_data  #.split("\n")[27]
 
 
-class RR9(object):
-    def __init__(self, str_data):
-        self.i = str_data
-
-
 class Observations(object):
     def __init__(self, json_data: dict):
         properties = json_data["features"][0]["properties"]
@@ -136,7 +131,7 @@ class Observations(object):
         self.temp = float(properties["temperature"]["value"])
         self.dew = float(properties["dewpoint"]["value"])
         self.rh = float(properties["relativeHumidity"]["value"])
-        self.wind_chill = float(properties["windChill"]["value"])
+        # self.wind_chill = float(properties["windChill"]["value"])
         self.wind_direction = float(properties["windDirection"]["value"])
         self.wind_speed = float(properties["windSpeed"]["value"])
         # self.precipitation_1h = float(properties["precipitationLastHour"]["value"])
@@ -265,9 +260,6 @@ class Location(object):
     def get_lco(self):
         return LCO(self.grid_data.get_product("LCO"))
 
-    def get_rr9(self):
-        return RR9(self.grid_data.get_product("RR9"))
-
 
 class District(object):
     def __init__(self, name: str, primary: Location, secondary: Location, zone: Zone | None = None, station: Station | None = None, control: Location | None = None):
@@ -295,7 +287,6 @@ class District(object):
         self.primary_observations: Observations = self.station.get_observations()
         self.fzl: FZL = primary.get_fzl()
         self.lco: LCO = primary.get_lco()
-        self.rr9: RR9 = primary.get_rr9()
 
     def __repr__(self):
         return (f"District({self.name.__repr__()}, {self.primary.__repr__()}, {self.secondary.__repr__()}, "
@@ -330,16 +321,15 @@ def fmt(value: float) -> str:
 
 def main():
     if check_ok():
-        test_district: District = District(
+        my_district: District = District(
             "District 1",
             Location(Point(sample_locations[0])),
             Location(Point(sample_locations[1])),
         )
-        snowday_score(test_district)
-        print(test_district.__repr__())
-        # print(test_district.fzl.i)
-        print(test_district.lco.i)
-        # print(test_district.rr9.i)
+        snowday_score(my_district)
+        print(my_district)
+        print(my_district.fzl.i)
+        print(my_district.lco.i)
 
 
 if __name__ == "__main__":
@@ -349,5 +339,5 @@ if __name__ == "__main__":
     print(time() - t0)
 
 
-# todo: good product names: HYD, RR9
+# todo: good product names: HYD
 # todo scrape power company's website
