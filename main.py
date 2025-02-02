@@ -233,6 +233,9 @@ class Station(object):
         url = f"https://api.weather.gov/stations/{self.id}/observations"
         return call_json(url, headers=nws_headers)
 
+    def get_observations(self):
+        return Observations(self.get_observations_json())
+
 
 class Location(object):
     def __init__(self, latlon: Point, grid_data: GridPoint | None = None, zone: Zone | None = None,
@@ -245,18 +248,9 @@ class Location(object):
             self.grid_data = self.latlon.get_grid_data()
         else:
             self.grid_data = grid_data
-        if zone is None:
-            self.zone = self.latlon.get_zone()
-        else:
-            self.zone = zone
-        if station is None:
-            self.station = self.grid_data.get_station()
-        else:
-            self.station = station
 
     def __repr__(self):
-        return (f"Location({self.latlon.__repr__()}, grid_data={self.grid_data.__repr__()}, "
-                f"zone={self.zone.__repr__()}, station={self.station.__repr__()})")
+        return f"Location({self.latlon.__repr__()}, grid_data={self.grid_data.__repr__()})"
 
     def __str__(self):
         return (f"{self.grid_data.mun}, {self.grid_data.state} ({self.latlon.latitude}, {self.latlon.longitude}): "
@@ -274,30 +268,38 @@ class Location(object):
     def get_rr9(self):
         return RR9(self.grid_data.get_product("RR9"))
 
-    def get_observations(self):
-        return Observations(self.station.get_observations_json())
-
 
 class District(object):
-    def __init__(self, name: str, primary: Location, secondary: Location, control: Location | None = None):
+    def __init__(self, name: str, primary: Location, secondary: Location, zone: Zone | None = None, station: Station | None = None, control: Location | None = None):
         self.name: str = name
         self.primary: Location = primary
         self.primary_forecast: Forecast = primary.get_forecast()
-        self.primary_observations: Observations = primary.get_observations()
         self.secondary: Location = secondary
         self.secondary_forecast: Forecast = secondary.get_forecast()
-        if control is None:
-            self.control: Location = Location(primary.station.latlon)  # todo: optimize memory
+        self.zone: Zone
+        self.station: Station
+        self.control: Location
+        if zone is None:
+            self.zone = primary.latlon.get_zone()
         else:
-            self.control: Location = control
+            self.zone = zone
+        if station is None:
+            self.station = primary.grid_data.get_station()
+        else:
+            self.station = station
+        if control is None:
+            self.control = Location(self.station.latlon)  # todo: optimize memory
+        else:
+            self.control = control
         self.control_forecast: Forecast = self.control.get_forecast()
+        self.primary_observations: Observations = self.station.get_observations()
         self.fzl: FZL = primary.get_fzl()
         self.lco: LCO = primary.get_lco()
         self.rr9: RR9 = primary.get_rr9()
 
     def __repr__(self):
         return (f"District({self.name.__repr__()}, {self.primary.__repr__()}, {self.secondary.__repr__()}, "
-                f"{self.control.__repr__()})")
+                f"zone={self.zone.__repr__()}, station={self.station.__repr__()}, control={self.control.__repr__()})")
 
     def __str__(self):
         return f"{self.name}: (\n\t{self.primary}\n\t{self.secondary}\n\t{self.control}\n)"
