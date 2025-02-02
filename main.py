@@ -67,7 +67,7 @@ def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
 
 
 class Forecast(object):
-    def __init__(self, json_data: dict):
+    def __init__(self, json_data: dict):  # make it all numpy?
         self.temp = nws_dict_to_datetime_dict(json_data["properties"]["temperature"])
         self.dew = nws_dict_to_datetime_dict(json_data["properties"]["dewpoint"])
         self.rh = nws_dict_to_datetime_dict(json_data["properties"]["relativeHumidity"])
@@ -81,12 +81,12 @@ class Forecast(object):
         self.snowfall = nws_dict_to_datetime_dict(json_data["properties"]["snowfallAmount"], method=1)
 
 
-class Observation(object):
-    pass
-
-
 class RR9Report(object):
     pass
+
+class Observations(object):
+    def __init__(self):
+        pass
 
 
 class Alert(object):  # keep?
@@ -185,6 +185,12 @@ class Location(object):
 
     def get_forecast(self):
         return Forecast(self.grid_data.get_forecast_json())
+
+    def get_rr9(self):
+        pass
+
+    def get_observations(self):
+        return Observations(self.station.get_observations_json())
 
 
 class District(object):
