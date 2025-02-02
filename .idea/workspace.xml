@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="mostly done with observations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="worked on products">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -418,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738475348089</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="worked on products">
+      <option name="closed" value="true" />
+      <created>1738516306639</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1738516306639</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -433,7 +440,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added url generation for mapclick because it's so much easier to check sources this way" />
     <MESSAGE value="added zone api calls" />
     <MESSAGE value="fixed issue: Place.name read as [city], [city]" />
     <MESSAGE value="cleaned up code a little bit" />
@@ -458,6 +464,7 @@
     <MESSAGE value="working on observation" />
     <MESSAGE value="removed obvious comment" />
     <MESSAGE value="mostly done with observations" />
-    <option name="LAST_COMMIT_MESSAGE" value="mostly done with observations" />
+    <MESSAGE value="worked on products" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on products" />
   </component>
 </project>

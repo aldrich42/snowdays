@@ -62,12 +62,17 @@ def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
         dt, dur = nws_str_to_datetime_with_duration(value["validTime"])
         if method == 0:
             for i in range(dur):
-                # v = value["value"]
-                out[dt + datetime.timedelta(hours=i)] = value["value"]
+                if value["value"] == "null":
+                    v = 0.0
+                else:
+                    v = float(value["value"])
         elif method == 1:
             for i in range(dur):
-                # v = value["value"]
-                out[dt + datetime.timedelta(hours=i)] = value["value"] / dur
+                if value["value"] == "null":
+                    v = 0.0
+                else:
+                    v = float(value["value"])
+                out[dt + datetime.timedelta(hours=i)] = v / dur
         else:
             raise ValueError(f"unknown method: {method.__repr__()}")
     return out
