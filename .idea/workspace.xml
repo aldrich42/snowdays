@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="undid the lat long thing because it takes up more mem">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="created some more work for myself :P">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -378,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738473043437</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="created some more work for myself :P">
+      <option name="closed" value="true" />
+      <created>1738473500365</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1738473500365</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -393,7 +400,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added find_place function to get data from a simple lat and lon" />
     <MESSAGE value="added convert_speed function" />
     <MESSAGE value="added water_vapor_pressure function" />
     <MESSAGE value="added apparent_temperature function" />
@@ -418,6 +424,7 @@
     <MESSAGE value="added lat and long to GridPoint" />
     <MESSAGE value="fixed a whoopsie" />
     <MESSAGE value="undid the lat long thing because it takes up more mem" />
-    <option name="LAST_COMMIT_MESSAGE" value="undid the lat long thing because it takes up more mem" />
+    <MESSAGE value="created some more work for myself :P" />
+    <option name="LAST_COMMIT_MESSAGE" value="created some more work for myself :P" />
   </component>
 </project>
