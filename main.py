@@ -14,6 +14,7 @@ class BadResponse(Exception):
 
 def call(url: str, headers: dict | None) -> requests.Response:
     response = requests.get(url, headers=headers)
+    print(f"GET: {url} ({response.status_code})")
     if response.status_code == 200:
         return response
     else:

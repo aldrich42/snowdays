@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added class Forecast">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="put everything on main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,9 +21,7 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2rMnJ6VlgnLK96yGU4wk0rqlzQh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -82,6 +73,134 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
+    </task>
+    <task id="LOCAL-00001" summary="getting started: added functions for cm/in conversion and c/f conversion (we'll use metric for this project), and a placeholder function to determine the chance of a snow day.">
+      <option name="closed" value="true" />
+      <created>1736380041906</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736380041906</updated>
+    </task>
+    <task id="LOCAL-00002" summary="getting started: added functions for cm/in conversion and c/f conversion (we'll use metric for this project), and a placeholder function to determine the chance of a snow day.">
+      <option name="closed" value="true" />
+      <created>1736380074226</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1736380074226</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added requests module">
+      <option name="closed" value="true" />
+      <created>1736635556872</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736635556872</updated>
+    </task>
+    <task id="LOCAL-00004" summary="a">
+      <option name="closed" value="true" />
+      <created>1736636640653</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736636640653</updated>
+    </task>
+    <task id="LOCAL-00005">
+      <option name="closed" value="true" />
+      <created>1736636659002</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736636659002</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added class Place and a test place (boston)">
+      <option name="closed" value="true" />
+      <created>1736637752153</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736637752153</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added function fmt">
+      <option name="closed" value="true" />
+      <created>1736637973011</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736637973011</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added convert_height function">
+      <option name="closed" value="true" />
+      <created>1736639103449</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1736639103449</updated>
+    </task>
+    <task id="LOCAL-00009" summary="removed some extra comments">
+      <option name="closed" value="true" />
+      <created>1736639190027</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736639190027</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added api call infrastructure">
+      <option name="closed" value="true" />
+      <created>1736640693699</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1736640693699</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added find_place function to get data from a simple lat and lon">
+      <option name="closed" value="true" />
+      <created>1736642071293</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736642071293</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added convert_speed function">
+      <option name="closed" value="true" />
+      <created>1736644141542</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1736644141542</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added water_vapor_pressure function">
+      <option name="closed" value="true" />
+      <created>1736644910108</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1736644910108</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added apparent_temperature function">
+      <option name="closed" value="true" />
+      <created>1736645164660</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1736645164660</updated>
+    </task>
+    <task id="LOCAL-00015" summary="did some refactoring and added api calls to the mapclick thing">
+      <option name="closed" value="true" />
+      <created>1736714633690</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1736714633690</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added url generation for mapclick because it's so much easier to check sources this way">
+      <option name="closed" value="true" />
+      <created>1736715238416</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736715238416</updated>
     </task>
     <task id="LOCAL-00017" summary="added zone api calls">
       <option name="closed" value="true" />
@@ -211,271 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736728679177</updated>
     </task>
-    <task id="LOCAL-00033" summary="added som files for restructuring">
+    <task id="LOCAL-00033" summary="put everything on main">
       <option name="closed" value="true" />
-      <created>1736891422047</created>
+      <created>1738466780708</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1736891422048</updated>
+      <updated>1738466780708</updated>
     </task>
-    <task id="LOCAL-00034" summary="reorganized the files">
-      <option name="closed" value="true" />
-      <created>1736891787908</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1736891787908</updated>
-    </task>
-    <task id="LOCAL-00035" summary="added api_functions file">
-      <option name="closed" value="true" />
-      <created>1736891872861</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1736891872861</updated>
-    </task>
-    <task id="LOCAL-00036" summary="reorganized the files">
-      <option name="closed" value="true" />
-      <created>1736892150270</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1736892150270</updated>
-    </task>
-    <task id="LOCAL-00037" summary="added /">
-      <option name="closed" value="true" />
-      <created>1736892166600</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1736892166600</updated>
-    </task>
-    <task id="LOCAL-00038" summary="added the classes Point and Gridpoint">
-      <option name="closed" value="true" />
-      <created>1736892312332</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1736892312332</updated>
-    </task>
-    <task id="LOCAL-00039" summary="a little bit more reorganizing">
-      <option name="closed" value="true" />
-      <created>1736892593271</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1736892593271</updated>
-    </task>
-    <task id="LOCAL-00040" summary="edited the call function to be broken up into call_json and call_html">
-      <option name="closed" value="true" />
-      <created>1736893483315</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1736893483315</updated>
-    </task>
-    <task id="LOCAL-00041" summary="added classes District and Zone">
-      <option name="closed" value="true" />
-      <created>1736893613977</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1736893613977</updated>
-    </task>
-    <task id="LOCAL-00042" summary="added __init__ methods for Point and GridPoint">
-      <option name="closed" value="true" />
-      <created>1736894213660</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1736894213660</updated>
-    </task>
-    <task id="LOCAL-00043" summary="added class Municipality">
-      <option name="closed" value="true" />
-      <created>1736894403945</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1736894403945</updated>
-    </task>
-    <task id="LOCAL-00044" summary="removed class Municipality">
-      <option name="closed" value="true" />
-      <created>1736894562003</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1736894562003</updated>
-    </task>
-    <task id="LOCAL-00045" summary="added mun (municipality) and state to class GridPoint">
-      <option name="closed" value="true" />
-      <created>1736894705027</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1736894705027</updated>
-    </task>
-    <task id="LOCAL-00046" summary="added class ObservationStation">
-      <option name="closed" value="true" />
-      <created>1736894748689</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1736894748689</updated>
-    </task>
-    <task id="LOCAL-00047" summary="changed ObservationStation to Station">
-      <option name="closed" value="true" />
-      <created>1736897154381</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1736897154381</updated>
-    </task>
-    <task id="LOCAL-00048" summary="changed signature a lil bit">
-      <option name="closed" value="true" />
-      <created>1736897924168</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1736897924168</updated>
-    </task>
-    <task id="LOCAL-00049" summary="added two init methods">
-      <option name="closed" value="true" />
-      <created>1736898133871</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1736898133871</updated>
-    </task>
-    <task id="LOCAL-00050" summary="added class Location">
-      <option name="closed" value="true" />
-      <created>1736899765320</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1736899765335</updated>
-    </task>
-    <task id="LOCAL-00051" summary="added Location.__init__">
-      <option name="closed" value="true" />
-      <created>1736901265200</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1736901265201</updated>
-    </task>
-    <task id="LOCAL-00052" summary="removed class Place&#10;added headers to two call_json instances">
-      <option name="closed" value="true" />
-      <created>1736901978685</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1736901978685</updated>
-    </task>
-    <task id="LOCAL-00053" summary="fixed bad reference">
-      <option name="closed" value="true" />
-      <created>1736901999361</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1736901999361</updated>
-    </task>
-    <task id="LOCAL-00054" summary="fixed pep8">
-      <option name="closed" value="true" />
-      <created>1736902097366</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1736902097366</updated>
-    </task>
-    <task id="LOCAL-00055" summary="added District.__init_">
-      <option name="closed" value="true" />
-      <created>1736902439092</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1736902439093</updated>
-    </task>
-    <task id="LOCAL-00056" summary="never going to use mapclick">
-      <option name="closed" value="true" />
-      <created>1736902538913</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1736902538915</updated>
-    </task>
-    <task id="LOCAL-00057" summary="never going to use mapclick&#10;added radar">
-      <option name="closed" value="true" />
-      <created>1736903679813</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1736903679813</updated>
-    </task>
-    <task id="LOCAL-00058" summary="updated main to be more compatible with current setup">
-      <option name="closed" value="true" />
-      <created>1736904534748</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1736904534748</updated>
-    </task>
-    <task id="LOCAL-00059" summary="fixed bug">
-      <option name="closed" value="true" />
-      <created>1736904556931</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1736904556932</updated>
-    </task>
-    <task id="LOCAL-00060" summary="edited todo">
-      <option name="closed" value="true" />
-      <created>1736908144005</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1736908144005</updated>
-    </task>
-    <task id="LOCAL-00061" summary="never using kelvin">
-      <option name="closed" value="true" />
-      <created>1736908348105</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1736908348106</updated>
-    </task>
-    <task id="LOCAL-00062" summary="updated todo">
-      <option name="closed" value="true" />
-      <created>1736908591340</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1736908591340</updated>
-    </task>
-    <task id="LOCAL-00063" summary="added rr9 stuff">
-      <option name="closed" value="true" />
-      <created>1736909183256</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1736909183256</updated>
-    </task>
-    <task id="LOCAL-00064" summary="made a better example">
-      <option name="closed" value="true" />
-      <created>1736909814218</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1736909814218</updated>
-    </task>
-    <task id="LOCAL-00065" summary="added class Forecast">
-      <option name="closed" value="true" />
-      <created>1736910159149</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1736910159149</updated>
-    </task>
-    <option name="localTasksCounter" value="66" />
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,31 +353,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edited the call function to be broken up into call_json and call_html" />
-    <MESSAGE value="added classes District and Zone" />
-    <MESSAGE value="added __init__ methods for Point and GridPoint" />
-    <MESSAGE value="added class Municipality" />
-    <MESSAGE value="removed class Municipality" />
-    <MESSAGE value="added mun (municipality) and state to class GridPoint" />
-    <MESSAGE value="added class ObservationStation" />
-    <MESSAGE value="changed ObservationStation to Station" />
-    <MESSAGE value="changed signature a lil bit" />
-    <MESSAGE value="added class Location" />
-    <MESSAGE value="added Location.__init__" />
-    <MESSAGE value="removed class Place&#10;added headers to two call_json instances" />
-    <MESSAGE value="fixed bad reference" />
-    <MESSAGE value="fixed pep8" />
-    <MESSAGE value="added District.__init_" />
-    <MESSAGE value="never going to use mapclick" />
-    <MESSAGE value="never going to use mapclick&#10;added radar" />
-    <MESSAGE value="updated main to be more compatible with current setup" />
-    <MESSAGE value="fixed bug" />
-    <MESSAGE value="edited todo" />
-    <MESSAGE value="never using kelvin" />
-    <MESSAGE value="updated todo" />
-    <MESSAGE value="added rr9 stuff" />
-    <MESSAGE value="made a better example" />
-    <MESSAGE value="added class Forecast" />
-    <option name="LAST_COMMIT_MESSAGE" value="added class Forecast" />
+    <MESSAGE value="added class Place and a test place (boston)" />
+    <MESSAGE value="added function fmt" />
+    <MESSAGE value="added convert_height function" />
+    <MESSAGE value="removed some extra comments" />
+    <MESSAGE value="added api call infrastructure" />
+    <MESSAGE value="added find_place function to get data from a simple lat and lon" />
+    <MESSAGE value="added convert_speed function" />
+    <MESSAGE value="added water_vapor_pressure function" />
+    <MESSAGE value="added apparent_temperature function" />
+    <MESSAGE value="did some refactoring and added api calls to the mapclick thing" />
+    <MESSAGE value="added url generation for mapclick because it's so much easier to check sources this way" />
+    <MESSAGE value="added zone api calls" />
+    <MESSAGE value="fixed issue: Place.name read as [city], [city]" />
+    <MESSAGE value="cleaned up code a little bit" />
+    <MESSAGE value="made the mapclick be the right units" />
+    <MESSAGE value="removed url graphical b/c nobody needs that" />
+    <MESSAGE value="fixed and shortened url mapclick" />
+    <MESSAGE value="removed zone class" />
+    <MESSAGE value="added url_headlines method" />
+    <MESSAGE value="fixed a lil stupid bug" />
+    <MESSAGE value="separated city and state" />
+    <MESSAGE value="added get_data&#10;im a lil slow sometimes" />
+    <MESSAGE value="added get_data&#10;im a lil slow sometimes&#10;fixed observations&#10;removed a couple unneeded functions" />
+    <MESSAGE value="refactored" />
+    <MESSAGE value="put everything on main" />
+    <option name="LAST_COMMIT_MESSAGE" value="put everything on main" />
   </component>
 </project>
