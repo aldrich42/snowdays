@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added lat and long to GridPoint">
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="fixed a whoopsie">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -361,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738472874707</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="fixed a whoopsie">
+      <option name="closed" value="true" />
+      <created>1738472922818</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1738472922818</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -376,7 +384,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed some extra comments" />
     <MESSAGE value="added api call infrastructure" />
     <MESSAGE value="added find_place function to get data from a simple lat and lon" />
     <MESSAGE value="added convert_speed function" />
@@ -401,6 +408,7 @@
     <MESSAGE value="added some console logging" />
     <MESSAGE value="did a little refactoring; added nws_duration_to_int" />
     <MESSAGE value="added lat and long to GridPoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="added lat and long to GridPoint" />
+    <MESSAGE value="fixed a whoopsie" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed a whoopsie" />
   </component>
 </project>

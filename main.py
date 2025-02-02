@@ -86,7 +86,7 @@ class Point(object):
     def get_grid_data(self):
         url = f"https://api.weather.gov/points/{self.latitude},{self.longitude}"
         data = call_json(url, headers=nws_headers)["properties"]
-        return GridPoint(self.latitude, self.longitude, data["relativeLocation"]["properties"]["city"],
+        return GridPoint(data["relativeLocation"]["properties"]["city"],
                          data["relativeLocation"]["properties"]["state"],
                          data["gridId"], data["gridX"], data["gridY"], data["radarStation"])
 
@@ -95,11 +95,12 @@ class Point(object):
         data = call_json(url, headers=nws_headers)["features"][0]["properties"]
         return Zone(data["id"], data["name"])
 
+    def get_sunrise(self):
+        pass
+
 
 class GridPoint(object):
-    def __init__(self, latitude: str, longitude: str, mun: str, state: str, wfo: str, grid_x: str, grid_y: str, radar: str):
-        self.latitude: str = latitude
-        self.longitude: str = longitude
+    def __init__(self, mun: str, state: str, wfo: str, grid_x: str, grid_y: str, radar: str):
         self.mun: str = mun
         self.state: str = state
         self.wfo: str = wfo
@@ -124,9 +125,6 @@ class GridPoint(object):
         url = f"https://api.weather.gov/products?office={self.radar}&type=RR9&limit=1"
         url2 = call_json(url, headers=nws_headers)["@graph"][0]["@id"]
         return call_json(url2, headers=nws_headers)["productText"]
-
-    def get_sunrise(self):
-        pass
 
 class Zone(object):
     def __init__(self, zone_id: str, name: str):
@@ -242,7 +240,7 @@ def main():
     if check_ok():
         test_district: District = District(
             Location(Point("42.3555,-71.0565"),
-                     grid_data=GridPoint("42.3555", "-71.0565", "Boston", "MA", "BOX", "72", "90", "KBOX"),
+                     grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
                      zone=Zone("MAZ025", "Suffolk"),
                      station=Station("KBOS", "Boston, Logan International Airport")),  # boston
         )
