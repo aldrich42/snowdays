@@ -33,22 +33,40 @@ def check_ok() -> bool:
     return call_json("https://api.weather.gov/")["status"] == "OK"
 
 
-def nws_str_to_datetime(nws_str: str) -> datetime.datetime:
-    print(nws_str[11:13])
+def nws_str_to_datetime(nws_str: str) -> (datetime.datetime, int):
+    duration = int(nws_str[28:-1])
     return datetime.datetime(int(nws_str[:4]), int(nws_str[5:7]), int(nws_str[8:10]),
-                             int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19]))
+                             int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19])), duration
 
 
-def nws_dict_to_datetime_dict(json_data: dict) -> dict:
+def nws_dict_to_datetime_dict(json_data: dict, method: str) -> dict:
     out: dict = {}
     for value in json_data["values"]:
-        out[nws_str_to_datetime(value["validTime"])] = value["value"]
+        dt, dur = nws_str_to_datetime(value["validTime"])
+        if method == "stay":
+            for i in range(dur):
+                out[dt + datetime.timedelta(hours=i)] = value["value"]
+        elif method == "split":
+            for i in range(dur):
+                out[dt + datetime.timedelta(hours=i)] = value["value"] / dur
+        else:
+            raise ValueError(f"unknown method: {method.__repr__()}")
     return out
 
 
 class Forecast(object):
     def __init__(self, json_data: dict):
-        self.temperature = nws_dict_to_datetime_dict(json_data["properties"]["temperature"])
+        self.temp = nws_dict_to_datetime_dict(json_data["properties"]["temperature"], "stay")
+        self.dew = nws_dict_to_datetime_dict(json_data["properties"]["dewpoint"], "stay")
+        self.rh = nws_dict_to_datetime_dict(json_data["properties"]["relativeHumidity"], "stay")
+        self.at = nws_dict_to_datetime_dict(json_data["properties"]["apparentTemperature"], "stay")
+        self.wind_chill = nws_dict_to_datetime_dict(json_data["properties"]["windChill"], "stay")
+        self.wind_direction = nws_dict_to_datetime_dict(json_data["properties"]["windDirection"], "stay")
+        self.wind_speed = nws_dict_to_datetime_dict(json_data["properties"]["windSpeed"], "stay")
+        self.prop = nws_dict_to_datetime_dict(json_data["probabilityOfPrecipitation"]["dewpoint"], "stay")
+        self.quop = nws_dict_to_datetime_dict(json_data["properties"]["quantitativePrecipitation"], "spread")
+        self.ice = nws_dict_to_datetime_dict(json_data["properties"]["iceAccumulation"], "spread")
+        self.snowfall = nws_dict_to_datetime_dict(json_data["properties"]["snowfallAmount"], "spread")
 
 
 class Point(object):
@@ -172,7 +190,7 @@ def convert_height(value: float, from_unit: str, to_unit: str) -> float:
     conversion_table: dict = {
         ("cm", "m"): 1/100, ("cm", "in"): 1/2.54, ("cm", "ft"): 1/(2.54*12),
         ("m", "cm"): 100, ("m", "in"): 100/2.54, ("m", "ft"): 100/(12*2.54),
-        ("in", "cm"): 2.54, ("in", "m"): 2.54/100, ("in", "ft"): 1/12,
+        ("in", "cm"): 2.54, ("in", "m"): 2.54/100, ("in", "ft"): 1/12,  # todo standard nws units, also mm
         ("ft", "cm"): 12*2.54, ("ft", "m"): 12*2.54/100, ("ft", "in"): 12
     }
 
@@ -186,7 +204,7 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
     # height units: mps, mph
 
     conversion_table: dict = {
-        ("mps", "mph"): 5280*(12*2.54/100)/3600,
+        ("mps", "mph"): 5280*(12*2.54/100)/3600,  # todo kph <-> mph instead of mps
         ("mph", "mps"): 3600*(100/(12*2.54))/5280
     }
 
@@ -220,9 +238,8 @@ def main():
                      zone=Zone("MAZ025", "Suffolk"),
                      station=Station("KBOS", "Boston, Logan International Airport")),  # boston
         )
-        print("accessed locations")
         # print(fmt(chance_of_snow_day(test_district)))
-        print(list(test_district.center.get_forecast().temperature.keys())[0])
+        print(test_district.center.get_forecast().temp)
 
 
 if __name__ == "__main__":
