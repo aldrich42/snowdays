@@ -285,11 +285,20 @@ class District(object):
         return f"{self.name}: (\n\t{self.primary}\n\t{self.secondary}\n\t{self.control}\n)"
 
 
-def convert():
-    pass
+def americanize(value: float, unit: str):
+    if unit == "C":
+        return value * 9/5 + 32
+    elif unit == "mm":
+        return value / 25.4
+    elif unit == "kph":
+        return value / 1.609344
+    else:
+        raise ValueError(f"unknown unit: {unit.__repr__()}")
+
 
 def neural_net():
     pass
+
 
 def snowday_score(area: District):
     pass

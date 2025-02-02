@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added apparent temp to observations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40e1e7bd-0041-47e9-bd88-d9f2dbf9cf6e" name="Changes" comment="added easy coordinate input">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,14 +72,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736377738162</updated>
-    </task>
-    <task id="LOCAL-00003" summary="added requests module">
-      <option name="closed" value="true" />
-      <created>1736635556872</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1736635556872</updated>
     </task>
     <task id="LOCAL-00004" summary="a">
       <option name="closed" value="true" />
@@ -466,7 +457,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738524690255</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="added easy coordinate input">
+      <option name="closed" value="true" />
+      <created>1738525270610</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1738525270610</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -481,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added url_headlines method" />
     <MESSAGE value="fixed a lil stupid bug" />
     <MESSAGE value="separated city and state" />
     <MESSAGE value="added get_data&#10;im a lil slow sometimes" />
@@ -506,6 +504,7 @@
     <MESSAGE value="added rational_normal" />
     <MESSAGE value="imported math.floor, imported time.time, removed random module" />
     <MESSAGE value="added apparent temp to observations" />
-    <option name="LAST_COMMIT_MESSAGE" value="added apparent temp to observations" />
+    <MESSAGE value="added easy coordinate input" />
+    <option name="LAST_COMMIT_MESSAGE" value="added easy coordinate input" />
   </component>
 </project>
