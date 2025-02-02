@@ -8,7 +8,7 @@ import datetime
 
 
 nws_headers = None
-sample_locations = ["42.3555,-71.0565", "42.4084,-71.0120", "42.4698,-70.9569"]
+sample_locations = {"p": "42.3555,-71.0565", "s": "42.4084,-71.0120", "c": "42.4698,-70.9569"}
 
 
 class BadResponse(Exception):
@@ -82,7 +82,7 @@ def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
     return out
 
 
-class Forecast(object):
+class Forecast(object):  # todo trim
     def __init__(self, json_data: dict):  # make it all numpy?
         self.temp = nws_dict_to_datetime_dict(json_data["properties"]["temperature"])
         self.dew = nws_dict_to_datetime_dict(json_data["properties"]["dewpoint"])
@@ -115,7 +115,6 @@ class RR9(object):
 class Observations(object):
     def __init__(self, json_data: dict):
         properties = json_data["features"][0]["properties"]
-        print(properties)
         self.timestamp: datetime = nws_str_to_datetime(properties["timestamp"])
         self.temp = float(properties["temperature"]["value"])
         self.dew = float(properties["dewpoint"]["value"])
@@ -124,9 +123,9 @@ class Observations(object):
         self.wind_chill = float(properties["windChill"]["value"])
         self.wind_direction = float(properties["windDirection"]["value"])
         self.wind_speed = float(properties["windSpeed"]["value"])
-        self.precipitation_1h = float(properties["precipitationLastHour"]["value"])
-        self.precipitation_3h = float(properties["precipitationLast3Hours"]["value"])
-        self.precipitation_6h = float(properties["precipitationLast6Hours"]["value"])
+        # self.precipitation_1h = float(properties["precipitationLastHour"]["value"])
+        # self.precipitation_3h = float(properties["precipitationLast3Hours"]["value"])
+        # self.precipitation_6h = float(properties["precipitationLast6Hours"]["value"])
 
 class Alert(object):  # keep?
     pass
@@ -260,22 +259,22 @@ class Location(object):
 
 
 class District(object):
-    def __init__(self, name: str, center: Location, *margin: Location):
+    def __init__(self, name: str, primary: Location, secondary: Location, control: Location):
         self.name: str = name
-        self.center: Location = center
-        self.margin: tuple[Location, ...] = margin
+        self.primary: Location = primary
+        self.primary_forecast: Forecast = primary.get_forecast()
+        self.primary_observations: Observations = primary.get_observations()
+        self.secondary: Location = secondary
+        self.secondary_forecast: Forecast = secondary.get_forecast()
+        self.control: Location = control
+        self.control_forecast: Forecast = control.get_forecast()
 
     def __repr__(self):
-        margin_str = ""
-        for i in self.margin:
-            margin_str += f", {i.__repr__()}"
-        return f"District({self.center.__repr__()}{margin_str})"
+        return (f"District({self.name.__repr__()}, {self.primary.__repr__()}, {self.secondary.__repr__()}, "
+                f"{self.control.__repr__()})")
 
     def __str__(self):
-        margin_str = ""
-        for i in self.margin:
-            margin_str += f"\t{i}\n"
-        return f"{self.name}: (\n\t{self.center}\n{margin_str})"
+        return f"{self.name}: (\n\t{self.primary}\n\t{self.secondary}\n\t{self.control}\n)"
 
 
 def convert():
@@ -285,10 +284,6 @@ def neural_net():
     pass
 
 def snowday_score(area: District):
-    forecasts = [area.center.get_forecast()] + [i.get_forecast() for i in area.margin]
-    rr9s = [area.center.get_rr9()] + [i.get_rr9() for i in area.margin]
-    rr9s = [area.center.get_rr9()] + [i.get_rr9() for i in area.margin]
-    rr9s = [area.center.get_rr9()] + [i.get_rr9() for i in area.margin]
     pass
 
 
@@ -300,9 +295,9 @@ def main():
     if check_ok():
         test_district: District = District(
             "Coastal Massachusetts",
-            Location(Point(sample_locations[0])),
-            Location(Point(sample_locations[1])),
-            Location(Point(sample_locations[2])),
+            Location(Point(sample_locations["p"])),
+            Location(Point(sample_locations["s"])),
+            Location(Point(sample_locations["c"]))
         )
         snowday_score(test_district)
         print(test_district)
