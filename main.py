@@ -188,8 +188,10 @@ class GridPoint(object):
 
     def get_station(self):
         url = f"https://api.weather.gov/gridpoints/{self.wfo}/{self.grid_x},{self.grid_y}/stations"
-        data = call_json(url, headers=nws_headers)["features"][0]["properties"]
-        return Station(data["stationIdentifier"], data["name"])
+        data = call_json(url, headers=nws_headers)["features"][0]
+        coordinates = data["geometry"]["coordinates"]
+        point = f"{coordinates[1]:.4f},{coordinates[0]:.4f}"
+        return Station(Point(point), data["properties"]["stationIdentifier"], data["properties"]["name"])
 
     def get_forecast_json(self):
         url = f"https://api.weather.gov/gridpoints/{self.wfo}/{self.grid_x},{self.grid_y}"
@@ -219,12 +221,13 @@ class Zone(object):
 
 
 class Station(object):
-    def __init__(self, station_id: str, name: str):
+    def __init__(self, latlon: Point, station_id: str, name: str):
+        self.latlon: Point = latlon
         self.id: str = station_id
         self.name: str = name
 
     def __repr__(self):
-        return f"Station('{self.id}', {self.name.__repr__()})"
+        return f"Station({self.latlon.__repr__()}, '{self.id}', {self.name.__repr__()})"
 
     def get_observations_json(self):
         url = f"https://api.weather.gov/stations/{self.id}/observations"
@@ -276,15 +279,18 @@ class Location(object):
 
 
 class District(object):
-    def __init__(self, name: str, primary: Location, secondary: Location, control: Location):
+    def __init__(self, name: str, primary: Location, secondary: Location, control: Location | None = None):
         self.name: str = name
         self.primary: Location = primary
         self.primary_forecast: Forecast = primary.get_forecast()
         self.primary_observations: Observations = primary.get_observations()
         self.secondary: Location = secondary
         self.secondary_forecast: Forecast = secondary.get_forecast()
-        self.control: Location = control
-        self.control_forecast: Forecast = control.get_forecast()
+        if control is None:
+            self.control: Location = Location(primary.station.latlon)  # todo: optimize memory
+        else:
+            self.control: Location = control
+        self.control_forecast: Forecast = self.control.get_forecast()
         self.fzl: FZL = primary.get_fzl()
         self.lco: LCO = primary.get_lco()
         self.rr9: RR9 = primary.get_rr9()
@@ -326,10 +332,9 @@ def main():
             "District 1",
             Location(Point(sample_locations[0])),
             Location(Point(sample_locations[1])),
-            Location(Point(sample_locations[2]))
         )
         snowday_score(test_district)
-        print(test_district)
+        print(test_district.__repr__())
         # print(test_district.fzl.i)
         print(test_district.lco.i)
         # print(test_district.rr9.i)
