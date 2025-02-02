@@ -86,7 +86,7 @@ class Point(object):
     def get_grid_data(self):
         url = f"https://api.weather.gov/points/{self.latitude},{self.longitude}"
         data = call_json(url, headers=nws_headers)["properties"]
-        return GridPoint(data["relativeLocation"]["properties"]["city"],
+        return GridPoint(self.latitude, self.longitude, data["relativeLocation"]["properties"]["city"],
                          data["relativeLocation"]["properties"]["state"],
                          data["gridId"], data["gridX"], data["gridY"], data["radarStation"])
 
@@ -97,7 +97,9 @@ class Point(object):
 
 
 class GridPoint(object):
-    def __init__(self, mun: str, state: str, wfo: str, grid_x: str, grid_y: str, radar: str):
+    def __init__(self, latitude: str, longitude: str, mun: str, state: str, wfo: str, grid_x: str, grid_y: str, radar: str):
+        self.latitude: str = latitude
+        self.longitude: str = longitude
         self.mun: str = mun
         self.state: str = state
         self.wfo: str = wfo
@@ -123,6 +125,8 @@ class GridPoint(object):
         url2 = call_json(url, headers=nws_headers)["@graph"][0]["@id"]
         return call_json(url2, headers=nws_headers)["productText"]
 
+    def get_sunrise(self):
+        pass
 
 class Zone(object):
     def __init__(self, zone_id: str, name: str):
@@ -222,10 +226,6 @@ def convert_speed(value: float, from_unit: str, to_unit: str) -> float:
         raise ValueError(f"Unknown height conversion: {(from_unit, to_unit).__repr__()}")
 
 
-def calculate_sunrise():
-    pass
-
-
 def chance_of_snow_day(area: District) -> float:
     dt: datetime.datetime = datetime.datetime.now()
 
@@ -242,7 +242,7 @@ def main():
     if check_ok():
         test_district: District = District(
             Location(Point("42.3555,-71.0565"),
-                     grid_data=GridPoint("Boston", "MA", "BOX", "72", "90", "KBOX"),
+                     grid_data=GridPoint("42.3555", "-71.0565", "Boston", "MA", "BOX", "72", "90", "KBOX"),
                      zone=Zone("MAZ025", "Suffolk"),
                      station=Station("KBOS", "Boston, Logan International Airport")),  # boston
         )
