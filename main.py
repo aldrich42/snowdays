@@ -38,7 +38,7 @@ def nws_duration_to_int(nws_duration: str) -> int:
     if values[0] == "P":
         return int(values[1][:-1])
     else:
-        return int(values[0][1:-1]) * int(values[1][:-1])
+        return int(values[0][1:-1]) * 24 + int(values[1][:-1])
 
 
 def nws_str_to_datetime(nws_str: str) -> (datetime.datetime, int):
