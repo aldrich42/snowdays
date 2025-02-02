@@ -119,9 +119,9 @@ class FZL(object):
         self.i = str_data
 
 
-class LCO(object):
+class LCO(object):  # todo make real
     def __init__(self, str_data):
-        self.i = str_data
+        self.i = str_data  #.split("\n")[27]
 
 
 class RR9(object):
@@ -285,6 +285,9 @@ class District(object):
         self.secondary_forecast: Forecast = secondary.get_forecast()
         self.control: Location = control
         self.control_forecast: Forecast = control.get_forecast()
+        self.fzl: FZL = primary.get_fzl()
+        self.lco: LCO = primary.get_lco()
+        self.rr9: RR9 = primary.get_rr9()
 
     def __repr__(self):
         return (f"District({self.name.__repr__()}, {self.primary.__repr__()}, {self.secondary.__repr__()}, "
@@ -327,6 +330,9 @@ def main():
         )
         snowday_score(test_district)
         print(test_district)
+        # print(test_district.fzl.i)
+        print(test_district.lco.i)
+        # print(test_district.rr9.i)
 
 
 if __name__ == "__main__":
