@@ -1,8 +1,7 @@
-from math import exp
-import time
+from math import exp, floor
+from time import time
 import numpy as np
 import requests
-import random
 import datetime
 
 
@@ -291,7 +290,7 @@ def snowday_score(area: District):
 
 
 def fmt(value: float) -> str:
-    return f"{math.floor(sigmoid_normal(value) * 100)}%"
+    return f"{floor(sigmoid_normal(value) * 100)}%"
 
 
 def main():
@@ -307,9 +306,9 @@ def main():
 
 
 if __name__ == "__main__":
-    t0 = time.time()
+    t0 = time()
     main()
-    print(time.time() - t0)
+    print(time() - t0)
 
 
 # todo: good product names: HYD, RR9
