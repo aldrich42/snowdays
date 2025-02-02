@@ -6,7 +6,7 @@ import datetime
 
 
 nws_headers = None
-sample_locations = {"p": "42.3555,-71.0565", "s": "42.4084,-71.0120", "c": "42.4698,-70.9569"}
+sample_locations = input("points? ").split(";")
 
 
 class BadResponse(Exception):
@@ -302,10 +302,10 @@ def fmt(value: float) -> str:
 def main():
     if check_ok():
         test_district: District = District(
-            "Coastal Massachusetts",
-            Location(Point(sample_locations["p"])),
-            Location(Point(sample_locations["s"])),
-            Location(Point(sample_locations["c"]))
+            "District 1",
+            Location(Point(sample_locations[0])),
+            Location(Point(sample_locations[1])),
+            Location(Point(sample_locations[2]))
         )
         snowday_score(test_district)
         print(test_district)
