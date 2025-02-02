@@ -45,7 +45,12 @@ def nws_duration_to_int(nws_duration: str) -> int:
         return int(values[0][1:-1]) * 24 + int(values[1][:-1])
 
 
-def nws_str_to_datetime(nws_str: str) -> (datetime.datetime, int):
+def nws_str_to_datetime(nws_str: str) -> datetime.datetime:
+    return datetime.datetime(int(nws_str[:4]), int(nws_str[5:7]), int(nws_str[8:10]),
+                             int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19]))
+
+
+def nws_str_to_datetime_with_duration(nws_str: str) -> (datetime.datetime, int):
     duration = nws_duration_to_int(nws_str[26:])
     return datetime.datetime(int(nws_str[:4]), int(nws_str[5:7]), int(nws_str[8:10]),
                              int(nws_str[11:13]), int(nws_str[14:16]), int(nws_str[17:19])), duration
@@ -54,7 +59,7 @@ def nws_str_to_datetime(nws_str: str) -> (datetime.datetime, int):
 def nws_dict_to_datetime_dict(json_data: dict, method: int = 0) -> dict:
     out: dict = {}
     for value in json_data["values"]:
-        dt, dur = nws_str_to_datetime(value["validTime"])
+        dt, dur = nws_str_to_datetime_with_duration(value["validTime"])
         if method == 0:
             for i in range(dur):
                 out[dt + datetime.timedelta(hours=i)] = value["value"]
@@ -85,9 +90,21 @@ class RR9Report(object):
     pass
 
 class Observations(object):
-    def __init__(self):
-        pass
-
+    def __init__(self, json_data: dict):
+        properties = json_data["features"][0]["properties"]
+        print(properties)
+        self.timestamp: datetime = nws_str_to_datetime(properties["timestamp"])
+        self.temp = properties["temperature"]["value"]
+        self.dew = properties["dewpoint"]["value"]
+        self.rh = properties["relativeHumidity"]["value"]
+        # self.at = properties["apparentTemperature"]["value"]
+        self.wind_chill = properties["windChill"]["value"]
+        self.wind_direction = properties["windDirection"]["value"]
+        self.wind_speed = properties["windSpeed"]["value"]
+        # self.prop = properties["probabilityOfPrecipitation"]["value"]
+        # self.quop = properties["quantitativePrecipitation"], ["value"]
+        # self.ice = properties["iceAccumulation"], ["value"]  # all these are prev precip
+        # self.snowfall = properties["snowfallAmount"], ["value"]
 
 class Alert(object):  # keep?
     pass
@@ -222,7 +239,7 @@ def main():
                      station=Station("KBOS", "Boston, Logan International Airport")
                      )
         )
-        print(list(test_district.center.get_forecast().temp.keys())[0])
+        print(list(test_district.center.get_observations()))
 
 
 if __name__ == "__main__":
